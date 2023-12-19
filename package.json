@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/index.ts",
   "module": "src/index.ts",
-  "private": true,
   "files": [
     "lkt-window.css",
     "dist/*",
@@ -65,11 +64,9 @@
     "node": ">=18"
   },
   "dependencies": {
-    "lkt-data-state": "^1.0.7",
     "lkt-events": "^1.0.2",
-    "lkt-http-client": "^1.0.0",
+    "lkt-loader": "^1.0.1",
     "lkt-ts-interfaces": "^1.0.2",
-    "lkt-vue-tools": "^1.0.1",
     "vue": "^3.3.0"
   }
 }
