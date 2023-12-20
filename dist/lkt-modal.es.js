@@ -1,13 +1,13 @@
 var w = Object.defineProperty;
 var N = (t, e, o) => e in t ? w(t, e, { enumerable: !0, configurable: !0, writable: !0, value: o }) : t[e] = o;
-var _ = (t, e, o) => (N(t, typeof e != "symbol" ? e + "" : e, o), o);
-import { defineComponent as $, ref as S, getCurrentInstance as L, computed as v, openBlock as s, createElementBlock as l, Fragment as y, renderList as x, createBlock as T, resolveDynamicComponent as V, mergeProps as O, useSlots as j, resolveComponent as D, normalizeClass as g, normalizeStyle as K, createElementVNode as c, withModifiers as z, unref as C, renderSlot as k, createCommentVNode as p, toDisplayString as A, withDirectives as I, createVNode as E, vShow as M } from "vue";
+var v = (t, e, o) => (N(t, typeof e != "symbol" ? e + "" : e, o), o);
+import { defineComponent as $, ref as S, getCurrentInstance as L, computed as _, openBlock as l, createElementBlock as s, Fragment as b, renderList as z, createBlock as T, resolveDynamicComponent as V, mergeProps as O, useSlots as j, resolveComponent as D, normalizeClass as g, normalizeStyle as K, createElementVNode as c, withModifiers as M, unref as C, renderSlot as k, createCommentVNode as p, toDisplayString as A, withDirectives as y, createVNode as E, vShow as x } from "vue";
 const H = (t, e = "_") => `${t}_${e}`;
 class P {
   constructor() {
-    _(this, "config", []);
-    _(this, "components", {});
-    _(this, "zIndex", 500);
+    v(this, "config", []);
+    v(this, "components", {});
+    v(this, "zIndex", 500);
   }
   setConfig(e) {
     this.config = e;
@@ -63,11 +63,11 @@ const u = {
       o.value = o.value + 1, setTimeout(() => {
         d.$forceUpdate();
       }, 1);
-    }, i = v(() => (o.value, Object.values(u.controller.components)));
+    }, i = _(() => (o.value, Object.values(u.controller.components)));
     return e({
       refresh: a
-    }), (f, b) => (s(), l("section", F, [
-      (s(!0), l(y, null, x(i.value, (r) => (s(), T(V(r.component), O({
+    }), (f, I) => (l(), s("section", F, [
+      (l(!0), s(b, null, z(i.value, (r) => (l(), T(V(r.component), O({
         key: r.index
       }, r.props), null, 16))), 128))
     ]));
@@ -84,10 +84,10 @@ const u = {
 }, Z = { class: "lkt-modal-button-tray" }, ee = ["disabled"], te = { "data-role": "loader" }, oe = { class: "lkt-modal-content" }, ne = {
   key: 0,
   class: "lkt-modal-footer"
-}, se = {
+}, le = {
   key: 0,
   class: "lkt-modal-footer_main"
-}, le = {
+}, se = {
   key: 1,
   class: "lkt-modal-button-tray"
 }, ie = { name: "LktModal", inheritAttrs: !1 }, ae = /* @__PURE__ */ $({
@@ -106,18 +106,18 @@ const u = {
     zIndex: { type: Number, default: 500 }
   },
   setup(t) {
-    const e = t, o = S(0), d = v(() => {
+    const e = t, o = S(0), d = _(() => {
       let n = ["lkt-modal"];
       return e.size && n.push(`is-${e.size}`), e.palette && n.push(`is-${e.palette}`), n.join(" ");
     }), a = () => W(e.modalName, e.modalKey), i = () => {
       e.disabledVeilClick || a();
-    }, f = j(), b = v(() => {
+    }, f = j(), I = _(() => {
       o.value;
       let n = [];
       for (let m in f)
         m.indexOf("button-") !== -1 && n.push(m);
       return n;
-    }), r = v(() => {
+    }), r = _(() => {
       o.value;
       let n = [];
       for (let m in f)
@@ -126,61 +126,63 @@ const u = {
     });
     return (n, m) => {
       const B = D("lkt-loader");
-      return s(), l("section", {
+      return l(), s("section", {
         class: g(d.value),
         style: K("z-index: " + t.zIndex)
       }, [
         c("div", {
           class: "lkt-modal-back",
-          onClick: z(i, ["prevent", "stop"])
+          onClick: M(i, ["prevent", "stop"])
         }),
         c("div", G, [
           c("header", J, [
             c("div", Q, [
-              C(f)["pre-title"] ? (s(), l("div", R, [
+              C(f)["pre-title"] ? (l(), s("div", R, [
                 k(n.$slots, "pre-title")
-              ])) : t.preTitle ? (s(), l("div", {
+              ])) : t.preTitle ? (l(), s("div", {
                 key: 1,
                 class: "lkt-modal-header_pre-title",
                 innerHTML: t.preTitle
               }, null, 8, X)) : p("", !0),
-              t.title ? (s(), l("div", Y, A(t.title), 1)) : p("", !0)
+              t.title ? (l(), s("div", Y, A(t.title), 1)) : p("", !0)
             ]),
             c("div", Z, [
-              (s(!0), l(y, null, x(b.value, (h) => (s(), l("div", {
+              (l(!0), s(b, null, z(I.value, (h) => (l(), s("div", {
                 class: g("lkt-modal-button lkt-modal-" + h)
               }, [
                 k(n.$slots, h)
               ], 2))), 256)),
-              t.showClose ? (s(), l("button", {
+              t.showClose ? (l(), s("button", {
                 key: 0,
                 class: "lkt-modal-button lkt-modal-button-close",
-                onClick: z(a, ["prevent", "stop"]),
+                onClick: M(a, ["prevent", "stop"]),
                 disabled: t.disabledClose
               }, null, 8, ee)) : p("", !0)
             ])
           ]),
-          I(c("section", te, [
+          y(c("section", te, [
             E(B)
           ], 512), [
-            [M, t.loading]
+            [x, t.loading]
           ]),
-          I(c("section", oe, [
+          y(c("section", oe, [
             k(n.$slots, "default")
           ], 512), [
-            [M, !t.loading]
+            [x, !t.loading]
           ]),
-          r.value.length > 0 || !!C(f).footer ? (s(), l("footer", ne, [
-            C(f).footer ? (s(), l("div", se, [
+          r.value.length > 0 || !!C(f).footer ? y((l(), s("footer", ne, [
+            C(f).footer ? (l(), s("div", le, [
               k(n.$slots, "footer")
             ])) : p("", !0),
-            r.value.length > 0 ? (s(), l("div", le, [
-              (s(!0), l(y, null, x(r.value, (h) => k(n.$slots, "footer-button-" + h, {
+            r.value.length > 0 ? (l(), s("div", se, [
+              (l(!0), s(b, null, z(r.value, (h) => k(n.$slots, "footer-button-" + h, {
                 key: h,
                 class: g("lkt-modal-button lkt-modal-" + h)
               })), 128))
             ])) : p("", !0)
-          ])) : p("", !0)
+          ], 512)), [
+            [x, !t.loading]
+          ]) : p("", !0)
         ], 512)
       ], 6);
     };

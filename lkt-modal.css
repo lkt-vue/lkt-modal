@@ -1,12 +1,13 @@
 .lkt-modal {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: baseline;
     position: fixed;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-    align-items: baseline;
-    justify-content: center;
     overflow-y: auto;
     grid-template-columns: 1fr;
     z-index: 500;
@@ -24,10 +25,10 @@
 
 .lkt-modal .lkt-modal-inner {
     max-width: 50%;
-    max-height: calc(100% - 60px);
+    /*max-height: calc(100% - 60px);*/
     background: var(--modal-background);
     z-index: 1;
-    overflow-y: auto;
+    /*overflow-y: hidden;*/
     border-radius: 4.5px;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, .07);
     transition: opacity 0.2s linear 0s, visibility 0s linear 0s;
@@ -53,6 +54,11 @@
 
 .lkt-modal-content {
     padding: var(--modal-content-padding);
+    height: 100%;
+    /*overflow-y: auto;*/
+    /*max-height: 100%;*/
+    display: block;
+    width: 100%;
 }
 
 .lkt-modal-header {
@@ -164,14 +170,36 @@
 }
 
 
-.lkt-modal footer .footer_button-tray {
+.lkt-modal-footer .lkt-modal-button-tray {
     border-top: 1px solid #ccc;
     width: 100%;
     display: flex;
 }
 
-.lkt-modal .footer_button-tray {
+.lkt-modal-footer .lkt-modal-button-tray {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.lkt-modal-inner {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "content"
+        "footer";
+}
+
+.lkt-modal-header {
+    grid-area: header;
+}
+
+.lkt-modal-content {
+    grid-area: content;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.lkt-modal-footer {
+    grid-area: footer;
 }

@@ -88,7 +88,7 @@ const headerButtons = computed(() => {
                 <slot></slot>
             </section>
 
-            <footer class="lkt-modal-footer" v-if="footerButtons.length > 0 || !!slots.footer">
+            <footer class="lkt-modal-footer" v-show="!loading" v-if="footerButtons.length > 0 || !!slots.footer">
                 <div v-if="!!slots.footer" class="lkt-modal-footer_main">
                     <slot name="footer"></slot>
                 </div>
