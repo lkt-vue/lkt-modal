@@ -42,13 +42,13 @@ const slots = useSlots();
 const headerButtons = computed(() => {
         refreshComputedProperties.value;
         let r = [];
-        for (let k in slots) if (k.indexOf('button-') !== -1) r.push(k);
+        for (let k in slots) if (k.indexOf('button-') === 0) r.push(k);
         return r;
     }),
     footerButtons = computed(() => {
         refreshComputedProperties.value;
         let r = [];
-        for (let k in slots) if (k.indexOf('footer-button-') !== -1) r.push(k);
+        for (let k in slots) if (k.indexOf('footer-button-') === 0) r.push(k);
         return r;
     });
 </script>
@@ -94,11 +94,10 @@ const headerButtons = computed(() => {
                 </div>
 
                 <div class="lkt-modal-button-tray" v-if="footerButtons.length > 0">
-                    <template v-for="(key) in footerButtons" v-bind:key="key">
-                        <slot
-                            v-bind:name="'footer-button-' + key"
-                            v-bind:class="'lkt-modal-button lkt-modal-'+key"
-                        ></slot>
+                    <template v-for="(key) in footerButtons">
+                        <div v-bind:class="'lkt-modal-button lkt-modal-'+key">
+                            <slot v-bind:name="key"></slot>
+                        </div>
                     </template>
                 </div>
             </footer>

@@ -227,9 +227,7 @@ declare const _default: {
     disabledClose: boolean;
     disabledVeilClick: boolean;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-    $slots: Record<string, {}> & Record<string, {
-        class: string;
-    }> & {
+    $slots: Record<string, {}> & Record<string, {}> & {
         'pre-title': (_: {}) => any;
         default: (_: {}) => any;
         footer: (_: {}) => any;

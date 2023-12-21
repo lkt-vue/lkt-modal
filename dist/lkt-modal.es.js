@@ -1,7 +1,7 @@
 var w = Object.defineProperty;
 var N = (t, e, o) => e in t ? w(t, e, { enumerable: !0, configurable: !0, writable: !0, value: o }) : t[e] = o;
 var v = (t, e, o) => (N(t, typeof e != "symbol" ? e + "" : e, o), o);
-import { defineComponent as $, ref as S, getCurrentInstance as L, computed as _, openBlock as l, createElementBlock as s, Fragment as b, renderList as z, createBlock as T, resolveDynamicComponent as V, mergeProps as O, useSlots as j, resolveComponent as D, normalizeClass as g, normalizeStyle as K, createElementVNode as c, withModifiers as M, unref as C, renderSlot as k, createCommentVNode as p, toDisplayString as A, withDirectives as y, createVNode as E, vShow as x } from "vue";
+import { defineComponent as $, ref as S, getCurrentInstance as L, computed as _, openBlock as l, createElementBlock as s, Fragment as b, renderList as z, createBlock as T, resolveDynamicComponent as V, mergeProps as O, useSlots as j, resolveComponent as D, normalizeClass as g, normalizeStyle as K, createElementVNode as c, withModifiers as M, unref as y, renderSlot as k, createCommentVNode as h, toDisplayString as A, withDirectives as C, createVNode as E, vShow as x } from "vue";
 const H = (t, e = "_") => `${t}_${e}`;
 class P {
   constructor() {
@@ -115,13 +115,13 @@ const u = {
       o.value;
       let n = [];
       for (let m in f)
-        m.indexOf("button-") !== -1 && n.push(m);
+        m.indexOf("button-") === 0 && n.push(m);
       return n;
     }), r = _(() => {
       o.value;
       let n = [];
       for (let m in f)
-        m.indexOf("footer-button-") !== -1 && n.push(m);
+        m.indexOf("footer-button-") === 0 && n.push(m);
       return n;
     });
     return (n, m) => {
@@ -137,52 +137,53 @@ const u = {
         c("div", G, [
           c("header", J, [
             c("div", Q, [
-              C(f)["pre-title"] ? (l(), s("div", R, [
+              y(f)["pre-title"] ? (l(), s("div", R, [
                 k(n.$slots, "pre-title")
               ])) : t.preTitle ? (l(), s("div", {
                 key: 1,
                 class: "lkt-modal-header_pre-title",
                 innerHTML: t.preTitle
-              }, null, 8, X)) : p("", !0),
-              t.title ? (l(), s("div", Y, A(t.title), 1)) : p("", !0)
+              }, null, 8, X)) : h("", !0),
+              t.title ? (l(), s("div", Y, A(t.title), 1)) : h("", !0)
             ]),
             c("div", Z, [
-              (l(!0), s(b, null, z(I.value, (h) => (l(), s("div", {
-                class: g("lkt-modal-button lkt-modal-" + h)
+              (l(!0), s(b, null, z(I.value, (p) => (l(), s("div", {
+                class: g("lkt-modal-button lkt-modal-" + p)
               }, [
-                k(n.$slots, h)
+                k(n.$slots, p)
               ], 2))), 256)),
               t.showClose ? (l(), s("button", {
                 key: 0,
                 class: "lkt-modal-button lkt-modal-button-close",
                 onClick: M(a, ["prevent", "stop"]),
                 disabled: t.disabledClose
-              }, null, 8, ee)) : p("", !0)
+              }, null, 8, ee)) : h("", !0)
             ])
           ]),
-          y(c("section", te, [
+          C(c("section", te, [
             E(B)
           ], 512), [
             [x, t.loading]
           ]),
-          y(c("section", oe, [
+          C(c("section", oe, [
             k(n.$slots, "default")
           ], 512), [
             [x, !t.loading]
           ]),
-          r.value.length > 0 || !!C(f).footer ? y((l(), s("footer", ne, [
-            C(f).footer ? (l(), s("div", le, [
+          r.value.length > 0 || !!y(f).footer ? C((l(), s("footer", ne, [
+            y(f).footer ? (l(), s("div", le, [
               k(n.$slots, "footer")
-            ])) : p("", !0),
+            ])) : h("", !0),
             r.value.length > 0 ? (l(), s("div", se, [
-              (l(!0), s(b, null, z(r.value, (h) => k(n.$slots, "footer-button-" + h, {
-                key: h,
-                class: g("lkt-modal-button lkt-modal-" + h)
-              })), 128))
-            ])) : p("", !0)
+              (l(!0), s(b, null, z(r.value, (p) => (l(), s("div", {
+                class: g("lkt-modal-button lkt-modal-" + p)
+              }, [
+                k(n.$slots, p)
+              ], 2))), 256))
+            ])) : h("", !0)
           ], 512)), [
             [x, !t.loading]
-          ]) : p("", !0)
+          ]) : h("", !0)
         ], 512)
       ], 6);
     };

@@ -6,3 +6,4 @@ declare const LktModal: {
 };
 export default LktModal;
 export { addModal, closeModal, openModal };
+export type { ValidModalKey } from "./types/types";
