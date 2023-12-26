@@ -78,7 +78,8 @@
     align-items: center;
 }
 
-.lkt-modal-button {
+
+.lkt-modal-button-close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,24 +89,20 @@
     height: var(--modal-header-height);
     position: relative;
     padding: 5px;
+    min-width: var(--modal-header-height);
 }
 
-.lkt-modal-button:hover {
+.lkt-modal-button-close:hover {
     background: rgba(0, 0, 0, .1);
 }
 
-.lkt-modal-button i {
+.lkt-modal-button-close i {
     display: flex;
     height: 100%;
     align-content: center;
     align-items: center;
     padding: 0;
     text-align: center;
-}
-
-
-.lkt-modal-button-close {
-    min-width: var(--modal-header-height);
 }
 
 .lkt-modal-button-close:before {
