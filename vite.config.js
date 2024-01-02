@@ -27,7 +27,7 @@ export default {
         'lkt-vue-tools',
         'lkt-http',
         'lkt-data-state',
-        'mount-vue-component',
+        'lkt-modal-confirm',
         'lkt-fields',
         'lkt-button',
         'lkt-tabs',

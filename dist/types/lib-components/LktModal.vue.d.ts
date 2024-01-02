@@ -20,6 +20,14 @@ declare const _default: {
             type: BooleanConstructor;
             default: boolean;
         };
+        closeConfirm: {
+            type: StringConstructor;
+            default: string;
+        };
+        closeConfirmKey: {
+            type: StringConstructor;
+            default: string;
+        };
         showClose: {
             type: BooleanConstructor;
             default: boolean;
@@ -65,6 +73,14 @@ declare const _default: {
             type: BooleanConstructor;
             default: boolean;
         };
+        closeConfirm: {
+            type: StringConstructor;
+            default: string;
+        };
+        closeConfirmKey: {
+            type: StringConstructor;
+            default: string;
+        };
         showClose: {
             type: BooleanConstructor;
             default: boolean;
@@ -98,6 +114,8 @@ declare const _default: {
         modalKey: string;
         palette: string;
         preTitle: string;
+        closeConfirm: string;
+        closeConfirmKey: string;
         showClose: boolean;
         disabledClose: boolean;
         disabledVeilClick: boolean;
@@ -128,6 +146,14 @@ declare const _default: {
         loading: {
             type: BooleanConstructor;
             default: boolean;
+        };
+        closeConfirm: {
+            type: StringConstructor;
+            default: string;
+        };
+        closeConfirmKey: {
+            type: StringConstructor;
+            default: string;
         };
         showClose: {
             type: BooleanConstructor;
@@ -162,6 +188,8 @@ declare const _default: {
         modalKey: string;
         palette: string;
         preTitle: string;
+        closeConfirm: string;
+        closeConfirmKey: string;
         showClose: boolean;
         disabledClose: boolean;
         disabledVeilClick: boolean;
@@ -189,6 +217,14 @@ declare const _default: {
     loading: {
         type: BooleanConstructor;
         default: boolean;
+    };
+    closeConfirm: {
+        type: StringConstructor;
+        default: string;
+    };
+    closeConfirmKey: {
+        type: StringConstructor;
+        default: string;
     };
     showClose: {
         type: BooleanConstructor;
@@ -223,6 +259,8 @@ declare const _default: {
     modalKey: string;
     palette: string;
     preTitle: string;
+    closeConfirm: string;
+    closeConfirmKey: string;
     showClose: boolean;
     disabledClose: boolean;
     disabledVeilClick: boolean;

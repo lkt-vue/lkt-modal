@@ -5,6 +5,7 @@ export default {name: 'LktModal', inheritAttrs: false};
 <script lang="ts" setup>
 import {closeModal} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
+import {openConfirm} from "lkt-modal-confirm";
 
 const props = defineProps({
     palette: {type: String, default: ''},
@@ -12,6 +13,8 @@ const props = defineProps({
     preTitle: {type: String, default: ''},
     title: {type: String, default: ''},
     loading: {type: Boolean, default: false},
+    closeConfirm: {type: String, default: ''},
+    closeConfirmKey: {type: String, default: '_'},
     showClose: {type: Boolean, default: true},
     disabledClose: {type: Boolean, default: false},
     disabledVeilClick: {type: Boolean, default: false},
@@ -31,7 +34,17 @@ const classes = computed(() => {
     return r.join(' ');
 });
 
-const onClose = () => closeModal(props.modalName, props.modalKey),
+const onClose = () => {
+        const _onClose = () => closeModal(props.modalName, props.modalKey);
+        if (props.closeConfirm) {
+            openConfirm(props.closeConfirm, props.closeConfirmKey, {
+                onConfirm: _onClose
+            })
+            return;
+        }
+        _onClose();
+
+    },
     onVeilClick = () => {
         if (props.disabledVeilClick) return;
         onClose();

@@ -6,6 +6,8 @@ import LktModalCanvas from './lib-components/LktModalCanvas.vue';
 import {default as modal} from './lib-components/LktModal.vue';
 import {Settings} from './settings/Settings';
 
+import "./../lkt-modal.css";
+
 const LktModal = {
     install: (app: App, options: any) => {
         app
