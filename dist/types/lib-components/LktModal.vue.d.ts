@@ -16,10 +16,6 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
-        loading: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
         closeConfirm: {
             type: StringConstructor;
             default: string;
@@ -69,10 +65,6 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
-        loading: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
         closeConfirm: {
             type: StringConstructor;
             default: string;
@@ -107,7 +99,6 @@ declare const _default: {
         };
     }>>, {
         zIndex: number;
-        loading: boolean;
         title: string;
         size: string;
         modalName: string;
@@ -143,10 +134,6 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
-        loading: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
         closeConfirm: {
             type: StringConstructor;
             default: string;
@@ -181,7 +168,6 @@ declare const _default: {
         };
     }>>, {}, {}, {}, {}, {
         zIndex: number;
-        loading: boolean;
         title: string;
         size: string;
         modalName: string;
@@ -213,10 +199,6 @@ declare const _default: {
     title: {
         type: StringConstructor;
         default: string;
-    };
-    loading: {
-        type: BooleanConstructor;
-        default: boolean;
     };
     closeConfirm: {
         type: StringConstructor;
@@ -252,7 +234,6 @@ declare const _default: {
     };
 }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
     zIndex: number;
-    loading: boolean;
     title: string;
     size: string;
     modalName: string;

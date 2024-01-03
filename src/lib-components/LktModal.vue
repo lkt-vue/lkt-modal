@@ -12,7 +12,6 @@ const props = defineProps({
     size: {type: String, default: ''},
     preTitle: {type: String, default: ''},
     title: {type: String, default: ''},
-    loading: {type: Boolean, default: false},
     closeConfirm: {type: String, default: ''},
     closeConfirmKey: {type: String, default: '_'},
     showClose: {type: Boolean, default: true},
@@ -94,14 +93,11 @@ const headerButtons = computed(() => {
                 </div>
             </header>
 
-            <section v-show="loading" data-role="loader">
-                <lkt-loader></lkt-loader>
-            </section>
-            <section v-show="!loading" class="lkt-modal-content">
+            <section class="lkt-modal-content">
                 <slot></slot>
             </section>
 
-            <footer class="lkt-modal-footer" v-show="!loading" v-if="footerButtons.length > 0 || !!slots.footer">
+            <footer class="lkt-modal-footer" v-if="footerButtons.length > 0 || !!slots.footer">
                 <div v-if="!!slots.footer" class="lkt-modal-footer_main">
                     <slot name="footer"></slot>
                 </div>

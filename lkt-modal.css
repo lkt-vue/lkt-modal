@@ -138,21 +138,22 @@
 }
 
 .lkt-modal-header_title {
-    padding: 0 15px;
-    font-size: 19px;
+    padding: var(--modal-title-padding);
+    font-size: var(--modal-title-font-size);
     grid-area: title;
 }
 
 .lkt-modal-header_pre-title {
-    padding: 0 15px 4px;
-    font-size: 14px;
-    background: #ccc;
+    padding: var(--modal-pre-title-padding);
+    font-size: var(--modal-pre-title-font-size);
+    font-weight: var(--modal-pre-title-font-weight);
+    background: var(--modal-pre-title-background);
+    color: var(--modal-pre-title-color);
     grid-area: pre;
 }
 
 .lkt-modal-header_pre-title + .lkt-modal-header_title {
-    font-size: 17px;
-    margin-top: -3px;
+    font-size: var(--modal-title-font-size-after-pre-title);
 }
 
 .lkt-modal footer .footer_footer {
