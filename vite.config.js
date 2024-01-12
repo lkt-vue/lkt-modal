@@ -30,6 +30,7 @@ export default {
         'lkt-modal-confirm',
         'lkt-fields',
         'lkt-button',
+        'lkt-loader',
         'lkt-tabs',
       ],
       output: {

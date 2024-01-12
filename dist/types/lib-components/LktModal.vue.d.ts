@@ -41,12 +41,16 @@ declare const _default: {
             default: string;
         };
         modalKey: {
-            type: StringConstructor;
+            type: (StringConstructor | NumberConstructor)[];
             default: string;
         };
         zIndex: {
             type: NumberConstructor;
             default: number;
+        };
+        beforeClose: {
+            type: FunctionConstructor;
+            default: any;
         };
     }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
         palette: {
@@ -90,19 +94,23 @@ declare const _default: {
             default: string;
         };
         modalKey: {
-            type: StringConstructor;
+            type: (StringConstructor | NumberConstructor)[];
             default: string;
         };
         zIndex: {
             type: NumberConstructor;
             default: number;
         };
+        beforeClose: {
+            type: FunctionConstructor;
+            default: any;
+        };
     }>>, {
         zIndex: number;
         title: string;
         size: string;
         modalName: string;
-        modalKey: string;
+        modalKey: string | number;
         palette: string;
         preTitle: string;
         closeConfirm: string;
@@ -110,6 +118,7 @@ declare const _default: {
         showClose: boolean;
         disabledClose: boolean;
         disabledVeilClick: boolean;
+        beforeClose: Function;
     }, true, {}, {}, {
         P: {};
         B: {};
@@ -159,19 +168,23 @@ declare const _default: {
             default: string;
         };
         modalKey: {
-            type: StringConstructor;
+            type: (StringConstructor | NumberConstructor)[];
             default: string;
         };
         zIndex: {
             type: NumberConstructor;
             default: number;
         };
+        beforeClose: {
+            type: FunctionConstructor;
+            default: any;
+        };
     }>>, {}, {}, {}, {}, {
         zIndex: number;
         title: string;
         size: string;
         modalName: string;
-        modalKey: string;
+        modalKey: string | number;
         palette: string;
         preTitle: string;
         closeConfirm: string;
@@ -179,6 +192,7 @@ declare const _default: {
         showClose: boolean;
         disabledClose: boolean;
         disabledVeilClick: boolean;
+        beforeClose: Function;
     }>;
     __isFragment?: never;
     __isTeleport?: never;
@@ -225,19 +239,23 @@ declare const _default: {
         default: string;
     };
     modalKey: {
-        type: StringConstructor;
+        type: (StringConstructor | NumberConstructor)[];
         default: string;
     };
     zIndex: {
         type: NumberConstructor;
         default: number;
     };
+    beforeClose: {
+        type: FunctionConstructor;
+        default: any;
+    };
 }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
     zIndex: number;
     title: string;
     size: string;
     modalName: string;
-    modalKey: string;
+    modalKey: string | number;
     palette: string;
     preTitle: string;
     closeConfirm: string;
@@ -245,6 +263,7 @@ declare const _default: {
     showClose: boolean;
     disabledClose: boolean;
     disabledVeilClick: boolean;
+    beforeClose: Function;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: Record<string, {}> & Record<string, {}> & {
         'pre-title': (_: {}) => any;

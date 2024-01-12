@@ -18,8 +18,9 @@ const props = defineProps({
     disabledClose: {type: Boolean, default: false},
     disabledVeilClick: {type: Boolean, default: false},
     modalName: {type: String, default: ''},
-    modalKey: {type: String, default: '_'},
-    zIndex: {type: Number, default: 500}
+    modalKey: {type: [String, Number], default: '_'},
+    zIndex: {type: Number, default: 500},
+    beforeClose: {type: Function, default: undefined}
 });
 
 const refreshComputedProperties = ref(0);
@@ -34,7 +35,12 @@ const classes = computed(() => {
 });
 
 const onClose = () => {
-        const _onClose = () => closeModal(props.modalName, props.modalKey);
+        const _onClose = async () => {
+            if (typeof props.beforeClose === 'function') {
+                await props.beforeClose();
+            }
+            closeModal(props.modalName, props.modalKey)
+        };
         if (props.closeConfirm) {
             openConfirm(props.closeConfirm, props.closeConfirmKey, {
                 onConfirm: _onClose
