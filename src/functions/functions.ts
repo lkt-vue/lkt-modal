@@ -1,5 +1,5 @@
 import {LktObject} from 'lkt-ts-interfaces';
-import {Component} from 'vue';
+import {Component, nextTick} from 'vue';
 
 import {Settings} from '../settings/Settings';
 import {ValidModalKey} from '../types/types';
@@ -25,4 +25,16 @@ export const closeModal = (alias: string, key: ValidModalKey = '_') => {
 export const addModal = (alias: string, component: Component) => {
     // @ts-ignore
     Settings.controller.addWindow({alias, component});
+};
+
+export const reOpenModal = (
+    alias: string,
+    key: ValidModalKey = '_',
+    props: LktObject = {}) => {
+    Settings.controller.close(alias, key);
+    Settings.canvas.refresh();
+    nextTick(() => {
+        Settings.controller.open(alias, key, props);
+        Settings.canvas.refresh();
+    });
 };

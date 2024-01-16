@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import {App, Component} from 'vue';
 
-import {addModal, closeModal, openModal} from './functions/functions';
+import {addModal, closeModal, openModal, reOpenModal} from './functions/functions';
 import LktModalCanvas from './lib-components/LktModalCanvas.vue';
 import {default as modal} from './lib-components/LktModal.vue';
 import {Settings} from './settings/Settings';
@@ -25,5 +25,5 @@ const LktModal = {
 
 export default LktModal;
 
-export {addModal, closeModal, openModal};
+export {addModal, closeModal, openModal, reOpenModal};
 export type {ValidModalKey} from "./types/types";
