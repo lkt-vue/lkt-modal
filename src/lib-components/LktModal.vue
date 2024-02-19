@@ -1,7 +1,3 @@
-<script lang="ts">
-export default {name: 'LktModal', inheritAttrs: false};
-</script>
-
 <script lang="ts" setup>
 import {closeModal} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';

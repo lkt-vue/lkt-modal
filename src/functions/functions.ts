@@ -3,11 +3,6 @@ import {Component, nextTick} from 'vue';
 
 import {Settings} from '../settings/Settings';
 import {ValidModalKey} from '../types/types';
-import {ModalCallerConfig} from '../types/ModalCallerConfig';
-
-export const openWindowConfig = (config: ModalCallerConfig) => {
-    Settings.canvas.open(config.alias, config.key, config.props);
-};
 
 export const openModal = (
     alias: string,

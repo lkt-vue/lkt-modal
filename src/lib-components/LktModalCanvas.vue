@@ -1,7 +1,3 @@
-<script lang="ts">
-export default {name: 'LktModalCanvas', inheritAttrs: false};
-</script>
-
 <script lang="ts" setup>
 import {computed, getCurrentInstance, ref} from 'vue';
 import {RenderModalInfo} from '../types/RenderModalInfo';

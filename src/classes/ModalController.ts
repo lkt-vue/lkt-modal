@@ -5,7 +5,6 @@ import {RenderModalStack} from '../interfaces/RenderModalStack';
 import {RenderModalInfo} from '../types/RenderModalInfo';
 import {ValidModalKey} from '../types/types';
 import {ModalConfig} from '../types/ModalConfig';
-import {Settings} from "../settings/Settings";
 
 export class ModalController {
     private config: ModalConfig[] = [];
