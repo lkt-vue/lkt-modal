@@ -1,8 +1,8 @@
 import {ModalController} from '../classes/ModalController';
+import {SettingsConfig} from "../types/SettingsConfig";
 
-export const Settings = {
+export const Settings: SettingsConfig = {
     controller: new ModalController(),
 
-    // @ts-ignore
     canvas: undefined,
 };

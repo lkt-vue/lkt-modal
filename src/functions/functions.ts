@@ -10,10 +10,12 @@ export const openModal = (
     props: LktObject = {}
 ) => {
     Settings.controller.open(alias, key, props);
+    //@ts-ignore
     Settings.canvas.refresh();
 };
 export const closeModal = (alias: string, key: ValidModalKey = '_') => {
     Settings.controller.close(alias, key);
+    //@ts-ignore
     Settings.canvas.refresh();
 };
 
@@ -27,9 +29,11 @@ export const reOpenModal = (
     key: ValidModalKey = '_',
     props: LktObject = {}) => {
     Settings.controller.close(alias, key);
+    //@ts-ignore
     Settings.canvas.refresh();
     nextTick(() => {
         Settings.controller.open(alias, key, props);
+        //@ts-ignore
         Settings.canvas.refresh();
     });
 };

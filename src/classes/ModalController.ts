@@ -19,8 +19,8 @@ export class ModalController {
         this.config.push(configStack);
     }
 
-    private findConfig(alias: string) {
-        return this.config.find((z) => z.alias === alias);
+    private findConfig(alias: string): ModalConfig|undefined {
+        return this.config.find((z:ModalConfig) => z.alias === alias);
     }
 
     private getModalInfo(
@@ -29,10 +29,11 @@ export class ModalController {
         props: LktObject = {}
     ): RenderModalInfo {
         const index = getInstanceIndex(alias, key),
-            config = this.findConfig(alias);
+            config = this.findConfig(alias),
+            component = typeof config !== 'undefined' ? config.component : '';
 
         return {
-            component: config.component,
+            component,
             alias,
             index,
             key,

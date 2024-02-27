@@ -15,6 +15,7 @@ export default {
     lib: {
       entry: `${src}/index.ts`,
       name: 'LktModal',
+      fileName: 'build',
       formats: ['es']
     },
     outDir,
