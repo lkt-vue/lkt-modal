@@ -35,6 +35,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    hiddenFooter: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     modalName: {
         type: StringConstructor;
         default: string;
@@ -88,6 +92,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    hiddenFooter: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     modalName: {
         type: StringConstructor;
         default: string;
@@ -117,6 +125,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     showClose: boolean;
     disabledClose: boolean;
     disabledVeilClick: boolean;
+    hiddenFooter: boolean;
     beforeClose: Function;
 }, {}>, Partial<Record<string, (_: {}) => any>> & Partial<Record<string, (_: {}) => any>> & {
     "pre-title"?(_: {}): any;

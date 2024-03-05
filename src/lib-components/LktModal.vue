@@ -13,6 +13,7 @@ const props = defineProps({
     showClose: {type: Boolean, default: true},
     disabledClose: {type: Boolean, default: false},
     disabledVeilClick: {type: Boolean, default: false},
+    hiddenFooter: {type: Boolean, default: false},
     modalName: {type: String, default: ''},
     modalKey: {type: [String, Number], default: '_'},
     zIndex: {type: Number, default: 500},
@@ -99,7 +100,7 @@ const headerButtons = computed(() => {
                 <slot></slot>
             </section>
 
-            <footer class="lkt-modal-footer" v-if="footerButtons.length > 0 || !!slots.footer">
+            <footer class="lkt-modal-footer" v-if="!hiddenFooter && (footerButtons.length > 0 || !!slots.footer)">
                 <div v-if="!!slots.footer" class="lkt-modal-footer_main">
                     <slot name="footer"></slot>
                 </div>
