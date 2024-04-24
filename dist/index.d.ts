@@ -1,8 +1,8 @@
-import { Component, Plugin } from 'vue';
-import { addModal, closeModal, openModal, reOpenModal } from './functions/functions';
+import { Plugin } from 'vue';
 import "./../lkt-modal.css";
+import { ValidCanvas } from "./types/ValidCanvas";
+export { addModal, closeModal, openModal, reOpenModal, refreshModal, execModal } from './functions/functions';
 declare const LktModal: Plugin;
 export default LktModal;
-export declare const setCanvas: (component: Component) => void;
-export { addModal, closeModal, openModal, reOpenModal };
+export declare const setCanvas: (component: ValidCanvas) => void;
 export type { ValidModalKey } from "./types/types";

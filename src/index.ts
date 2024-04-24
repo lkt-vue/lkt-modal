@@ -1,11 +1,12 @@
-import {App, Component, Plugin} from 'vue';
-
-import {addModal, closeModal, openModal, reOpenModal} from './functions/functions';
+import {App, Plugin} from 'vue';
 import LktModalCanvas from './lib-components/LktModalCanvas.vue';
 import {default as modal} from './lib-components/LktModal.vue';
 import {Settings} from './settings/Settings';
 
 import "./../lkt-modal.css";
+import {ValidCanvas} from "./types/ValidCanvas";
+
+export {addModal, closeModal, openModal, reOpenModal, refreshModal, execModal} from './functions/functions';
 
 const LktModal: Plugin = {
     install: (app: App) => {
@@ -17,9 +18,8 @@ const LktModal: Plugin = {
 
 export default LktModal;
 
-export const setCanvas = (component: Component): void => {
+export const setCanvas = (component: ValidCanvas): void => {
     Settings.canvas = component;
 };
 
-export {addModal, closeModal, openModal, reOpenModal};
 export type {ValidModalKey} from "./types/types";

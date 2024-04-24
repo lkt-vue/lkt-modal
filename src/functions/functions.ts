@@ -9,11 +9,49 @@ export const openModal = (
     key: ValidModalKey = '_',
     props: LktObject = {}
 ) => {
+    if (!Settings.canvas) {
+        console.warn('ModalCanvas not defined');
+        return;
+    }
     Settings.controller.open(alias, key, props);
     //@ts-ignore
     Settings.canvas.refresh();
 };
+
+export const refreshModal = (
+    alias: string,
+    key: ValidModalKey = '_',
+    props: LktObject = {}
+) => {
+    if (!Settings.canvas) {
+        console.warn('ModalCanvas not defined');
+        return;
+    }
+    Settings.canvas.refreshModal(alias, key, props);
+    //@ts-ignore
+    Settings.canvas.refresh();
+};
+
+export const execModal = (
+    alias: string,
+    key: ValidModalKey = '_',
+    method: string,
+    props: LktObject = {}
+) => {
+    if (!Settings.canvas) {
+        console.warn('ModalCanvas not defined');
+        return;
+    }
+    Settings.canvas.execModal(alias, key, method, props);
+    //@ts-ignore
+    Settings.canvas.refresh();
+};
+
 export const closeModal = (alias: string, key: ValidModalKey = '_') => {
+    if (!Settings.canvas) {
+        console.warn('ModalCanvas not defined');
+        return;
+    }
     Settings.controller.close(alias, key);
     //@ts-ignore
     Settings.canvas.refresh();
@@ -28,6 +66,10 @@ export const reOpenModal = (
     alias: string,
     key: ValidModalKey = '_',
     props: LktObject = {}) => {
+    if (!Settings.canvas) {
+        console.warn('ModalCanvas not defined');
+        return;
+    }
     Settings.controller.close(alias, key);
     //@ts-ignore
     Settings.canvas.refresh();
