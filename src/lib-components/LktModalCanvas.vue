@@ -27,11 +27,15 @@ const refreshModal = (
         key: ValidModalKey = '_',
         props: LktObject = {}
     ) => {
-        console.log('refreshModal', instanceReferences.value, components.value, alias, key, props)
+        instanceReferences.value.forEach((ins: LktObject) => {
+            if (ins.modalName === alias && ins.modalKey === key && typeof ins.doRefresh === 'function') ins.doRefresh(props);
+        })
     },
 
     execModal = (alias: string, key: ValidModalKey = '_', method: string, props: LktObject = {}) => {
-        console.log('execModal', instanceReferences.value, components.value, alias, key, method, props)
+        instanceReferences.value.forEach((ins: LktObject) => {
+            if (ins.modalName === alias && ins.modalKey === key) ins[method](props);
+        })
     }
 
 defineExpose({
