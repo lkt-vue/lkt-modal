@@ -12,34 +12,34 @@ class F {
     this.config.push(e);
   }
   findConfig(e) {
-    return this.config.find((o) => o.alias === e);
+    return this.config.find((n) => n.alias === e);
   }
-  getModalInfo(e, o = "_", f = {}) {
-    const i = E(e, o), d = this.findConfig(e);
+  getModalInfo(e, n = "_", d = {}) {
+    const c = E(e, n), i = this.findConfig(e);
     return {
-      component: typeof d < "u" ? d.component : "",
+      component: typeof i < "u" ? i.component : "",
       alias: e,
-      index: i,
-      key: o,
-      props: { ...f, modalName: e, modalKey: o, zIndex: this.zIndex },
+      index: c,
+      key: n,
+      props: { ...d, modalName: e, modalKey: n, zIndex: this.zIndex },
       zIndex: this.zIndex
     };
   }
-  open(e, o = "_", f = {}) {
+  open(e, n = "_", d = {}) {
     if (this.findConfig(e)) {
       ++this.zIndex;
-      const d = this.getModalInfo(e, o, f);
-      return this.components[d.index] ? this.focus(d) : (this.components[d.index] = d, this.components[d.index]);
+      const i = this.getModalInfo(e, n, d);
+      return this.components[i.index] ? this.focus(i) : (this.components[i.index] = i, this.components[i.index]);
     }
   }
   focus(e) {
     return this.components[e.index] = e, this.components[e.index];
   }
-  close(e, o = "_") {
+  close(e, n = "_") {
     if (this.findConfig(e)) {
       --this.zIndex;
-      const i = this.getModalInfo(e, o, {});
-      delete this.components[i.index], Object.keys(this.components).length === 0 && (this.zIndex = 500);
+      const c = this.getModalInfo(e, n, {});
+      delete this.components[c.index], Object.keys(this.components).length === 0 && (this.zIndex = 500);
     }
   }
 }
@@ -49,50 +49,51 @@ const s = {
 }, R = { class: "lkt-modal-canvas" }, j = /* @__PURE__ */ S({
   __name: "LktModalCanvas",
   setup(t, { expose: e }) {
-    const o = x(0), { ctx: f } = w(), i = x([]), d = () => {
-      o.value = o.value + 1, setTimeout(() => {
-        f.$forceUpdate();
+    const n = x(0), d = w(), c = x([]), i = () => {
+      n.value = n.value + 1, setTimeout(() => {
+        var o;
+        (o = d == null ? void 0 : d.proxy) == null || o.$forceUpdate();
       }, 1);
-    }, u = _(() => (o.value, Object.values(s.controller.components)));
+    }, u = _(() => (n.value, Object.values(s.controller.components)));
     return e({
-      refresh: d,
-      refreshModal: (n, c = "_", r = {}) => {
-        i.value.forEach((m) => {
-          m.modalName === n && m.modalKey === c && typeof m.doRefresh == "function" && m.doRefresh(r);
+      refresh: i,
+      refreshModal: (o, f = "_", r = {}) => {
+        c.value.forEach((m) => {
+          m.modalName === o && m.modalKey === f && typeof m.doRefresh == "function" && m.doRefresh(r);
         });
       },
-      execModal: (n, c = "_", r, m = {}) => {
-        i.value.forEach((C) => {
-          C.modalName === n && C.modalKey === c && C[r](m);
+      execModal: (o, f = "_", r, m = {}) => {
+        c.value.forEach((C) => {
+          C.modalName === o && C.modalKey === f && C[r](m);
         });
       }
-    }), (n, c) => (l(), a("section", R, [
+    }), (o, f) => (l(), a("section", R, [
       (l(!0), a(M, null, b(u.value, (r) => (l(), $(B(r.component), N({
         ref_for: !0,
         ref_key: "instanceReferences",
-        ref: i,
+        ref: c,
         key: r.index
       }, r.props), null, 16))), 128))
     ]));
   }
-}), ne = (t, e = "_", o = {}) => {
+}), ne = (t, e = "_", n = {}) => {
   if (!s.canvas) {
     console.warn("ModalCanvas not defined");
     return;
   }
-  s.controller.open(t, e, o), s.canvas.refresh();
-}, se = (t, e = "_", o = {}) => {
+  s.controller.open(t, e, n), s.canvas.refresh();
+}, se = (t, e = "_", n = {}) => {
   if (!s.canvas) {
     console.warn("ModalCanvas not defined");
     return;
   }
-  s.canvas.refreshModal(t, e, o), s.canvas.refresh();
-}, le = (t, e = "_", o, f = {}) => {
+  s.canvas.refreshModal(t, e, n), s.canvas.refresh();
+}, le = (t, e = "_", n, d = {}) => {
   if (!s.canvas) {
     console.warn("ModalCanvas not defined");
     return;
   }
-  s.canvas.execModal(t, e, o, f), s.canvas.refresh();
+  s.canvas.execModal(t, e, n, d), s.canvas.refresh();
 }, D = (t, e = "_") => {
   if (!s.canvas) {
     console.warn("ModalCanvas not defined");
@@ -101,13 +102,13 @@ const s = {
   s.controller.close(t, e), s.canvas.refresh();
 }, ae = (t, e) => {
   s.controller.addWindow({ alias: t, component: e });
-}, re = (t, e = "_", o = {}) => {
+}, re = (t, e = "_", n = {}) => {
   if (!s.canvas) {
     console.warn("ModalCanvas not defined");
     return;
   }
   s.controller.close(t, e), s.canvas.refresh(), K(() => {
-    s.controller.open(t, e, o), s.canvas.refresh();
+    s.controller.open(t, e, n), s.canvas.refresh();
   });
 }, H = {
   class: "lkt-modal-inner",
@@ -146,48 +147,48 @@ const s = {
     beforeClose: { type: Function, default: void 0 }
   },
   setup(t) {
-    const e = t, o = x(0), f = _(() => {
-      let n = ["lkt-modal"];
-      return e.size && n.push(`is-${e.size}`), e.palette && n.push(`is-${e.palette}`), n.join(" ");
-    }), i = () => {
-      const n = async () => {
+    const e = t, n = x(0), d = _(() => {
+      let o = ["lkt-modal"];
+      return e.size && o.push(`is-${e.size}`), e.palette && o.push(`is-${e.palette}`), o.join(" ");
+    }), c = () => {
+      const o = async () => {
         typeof e.beforeClose == "function" && await e.beforeClose(), D(e.modalName, e.modalKey);
       };
       if (e.closeConfirm) {
         V(e.closeConfirm, e.closeConfirmKey, {
-          onConfirm: n
+          onConfirm: o
         });
         return;
       }
-      n();
-    }, d = () => {
-      e.disabledVeilClick || i();
+      o();
+    }, i = () => {
+      e.disabledVeilClick || c();
     }, u = T(), z = _(() => {
-      o.value;
-      let n = [];
-      for (let c in u)
-        c.indexOf("button-") === 0 && n.push(c);
-      return n;
+      n.value;
+      let o = [];
+      for (let f in u)
+        f.indexOf("button-") === 0 && o.push(f);
+      return o;
     }), k = _(() => {
-      o.value;
-      let n = [];
-      for (let c in u)
-        c.indexOf("footer-button-") === 0 && n.push(c);
-      return n;
+      n.value;
+      let o = [];
+      for (let f in u)
+        f.indexOf("footer-button-") === 0 && o.push(f);
+      return o;
     });
-    return (n, c) => (l(), a("section", {
-      class: y(f.value),
+    return (o, f) => (l(), a("section", {
+      class: y(d.value),
       style: L("z-index: " + t.zIndex)
     }, [
       h("div", {
         class: "lkt-modal-back",
-        onClick: I(d, ["prevent", "stop"])
+        onClick: I(i, ["prevent", "stop"])
       }),
       h("div", H, [
         h("header", P, [
           h("div", W, [
             g(u)["pre-title"] ? (l(), a("div", U, [
-              v(n.$slots, "pre-title")
+              v(o.$slots, "pre-title")
             ])) : t.preTitle ? (l(), a("div", {
               key: 1,
               class: "lkt-modal-header_pre-title",
@@ -199,28 +200,28 @@ const s = {
             (l(!0), a(M, null, b(z.value, (r) => (l(), a("div", {
               class: y("lkt-modal-button lkt-modal-" + r)
             }, [
-              v(n.$slots, r)
+              v(o.$slots, r)
             ], 2))), 256)),
             t.showClose ? (l(), a("button", {
               key: 0,
               class: "lkt-modal-button lkt-modal-button-close",
-              onClick: I(i, ["prevent", "stop"]),
+              onClick: I(c, ["prevent", "stop"]),
               disabled: t.disabledClose
             }, null, 8, J)) : p("", !0)
           ])
         ]),
         h("section", Q, [
-          v(n.$slots, "default")
+          v(o.$slots, "default")
         ]),
         !t.hiddenFooter && (k.value.length > 0 || g(u).footer) ? (l(), a("footer", X, [
           g(u).footer ? (l(), a("div", Y, [
-            v(n.$slots, "footer")
+            v(o.$slots, "footer")
           ])) : p("", !0),
           k.value.length > 0 ? (l(), a("div", Z, [
             (l(!0), a(M, null, b(k.value, (r) => (l(), a("div", {
               class: y("lkt-modal-button lkt-modal-" + r)
             }, [
-              v(n.$slots, r)
+              v(o.$slots, r)
             ], 2))), 256))
           ])) : p("", !0)
         ])) : p("", !0)

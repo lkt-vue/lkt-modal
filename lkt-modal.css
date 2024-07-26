@@ -19,22 +19,22 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--modal-back-background);
+    background-color: var(--lkt-modal-back-background);
     transition: all 0.2s linear;
 }
 
 .lkt-modal .lkt-modal-inner {
     max-width: 50%;
     /*max-height: calc(100% - 60px);*/
-    background: var(--modal-background);
+    background: var(--lkt-modal-background);
     z-index: 1;
     /*overflow-y: hidden;*/
     border-radius: 4.5px;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, .07);
     transition: opacity 0.2s linear 0s, visibility 0s linear 0s;
     margin: 30px auto 0;
-    max-width: var(--modal-max-width-default);
-    width: var(--modal-width-default);
+    max-width: var(--lkt-modal-max-width-default);
+    width: var(--lkt-modal-width-default);
 }
 
 .lkt-modal.is-md > .lkt-modal-inner {
@@ -53,7 +53,7 @@
 }
 
 .lkt-modal-content {
-    padding: var(--modal-content-padding);
+    padding: var(--lkt-modal-content-padding);
     height: 100%;
     /*overflow-y: auto;*/
     /*max-height: 100%;*/
@@ -75,7 +75,7 @@
     z-index: 5;
     border-top-left-radius: 4.5px;
     border-top-right-radius: 4.5px;
-    height: var(--modal-header-height);
+    height: var(--lkt-modal-header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,10 +89,10 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s linear;
-    height: var(--modal-header-height);
+    height: var(--lkt-modal-header-height);
     position: relative;
     padding: 5px;
-    min-width: var(--modal-header-height);
+    min-width: var(--lkt-modal-header-height);
 }
 
 .lkt-modal-button-close:hover {
@@ -141,22 +141,22 @@
 }
 
 .lkt-modal-header_title {
-    padding: var(--modal-title-padding);
-    font-size: var(--modal-title-font-size);
+    padding: var(--lkt-modal-title-padding);
+    font-size: var(--lkt-modal-title-font-size);
     grid-area: title;
 }
 
 .lkt-modal-header_pre-title {
-    padding: var(--modal-pre-title-padding);
-    font-size: var(--modal-pre-title-font-size);
-    font-weight: var(--modal-pre-title-font-weight);
-    background: var(--modal-pre-title-background);
-    color: var(--modal-pre-title-color);
+    padding: var(--lkt-modal-pre-title-padding);
+    font-size: var(--lkt-modal-pre-title-font-size);
+    font-weight: var(--lkt-modal-pre-title-font-weight);
+    background: var(--lkt-modal-pre-title-background);
+    color: var(--lkt-modal-pre-title-color);
     grid-area: pre;
 }
 
 .lkt-modal-header_pre-title + .lkt-modal-header_title {
-    font-size: var(--modal-title-font-size-after-pre-title);
+    font-size: var(--lkt-modal-title-font-size-after-pre-title);
 }
 
 .lkt-modal footer .footer_footer {

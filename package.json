@@ -1,6 +1,6 @@
 {
   "name": "lkt-modal",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "",
   "type": "module",
   "module": "./dist/build.js",
@@ -8,14 +8,21 @@
     ".": {
       "import": "./dist/build.js"
     },
-    "./styles": "./dist/style.css"
+    "./styles": "./dist/style.css",
+    "./theme": "./theme/default.css",
+    "./theme/default": "./theme/default.css"
   },
   "types": "./dist/index.d.ts",
-  "files": ["dist/*", "src/**/*.vue"],
+  "files": [
+    "dist/*",
+    "src/**/*.vue",
+    "theme/**/*.css"
+  ],
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
-    "build": "rm -rf dist/*; vue-tsc --declaration --emitDeclarationOnly; vite build; tsc --project tsconfig.build.json; cp build/* dist/"
+    "build": "vue-tsc --declaration --emitDeclarationOnly; vite build; tsc --project tsconfig.build.json; cp build/* dist/",
+    "rebuild": "rm -rf dist/*; vue-tsc --declaration --emitDeclarationOnly; vite build; tsc --project tsconfig.build.json; cp build/* dist/"
   },
   "author": "Antonio Ibáñez",
   "devDependencies": {

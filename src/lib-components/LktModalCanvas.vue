@@ -6,13 +6,13 @@ import {ValidModalKey} from "../types/types";
 import {LktObject} from "lkt-ts-interfaces";
 
 const refresher = ref(0);
-const {ctx: _this}: any = getCurrentInstance();
+const instance = getCurrentInstance();
 const instanceReferences = ref([]);
 
 const refresh = () => {
     refresher.value = refresher.value + 1;
     setTimeout(() => {
-        _this.$forceUpdate();
+        instance?.proxy?.$forceUpdate();
     }, 1);
 };
 
