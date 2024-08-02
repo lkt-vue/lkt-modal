@@ -73,50 +73,13 @@
     border: 1px solid #dee2e6;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
     z-index: 5;
-    border-top-left-radius: 4.5px;
-    border-top-right-radius: 4.5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     height: var(--lkt-modal-header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-
-.lkt-modal-button-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s linear;
-    height: var(--lkt-modal-header-height);
-    position: relative;
-    padding: 5px;
-    min-width: var(--lkt-modal-header-height);
-}
-
-.lkt-modal-button-close:hover {
-    background: rgba(0, 0, 0, .1);
-}
-
-.lkt-modal-button-close i {
-    display: flex;
-    height: 100%;
-    align-content: center;
-    align-items: center;
-    padding: 0;
-    text-align: center;
-}
-
-.lkt-modal-button-close:before {
-    content: 'x';
-    display: block;
-    font-family: sans-serif;
-}
-
-/*.lkt-modal-button-save:before {*/
-/*    content: '\1F4BE';*/
-/*}*/
 
 .lkt-modal-header_title-container {
     position: relative;

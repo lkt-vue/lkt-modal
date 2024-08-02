@@ -2,12 +2,14 @@
 import {closeModal} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {openConfirm} from "lkt-modal-confirm";
+import {Settings} from "../settings/Settings";
 
 const props = defineProps({
     palette: {type: String, default: ''},
     size: {type: String, default: ''},
     preTitle: {type: String, default: ''},
     title: {type: String, default: ''},
+    closeIcon: {type: String, default: () => Settings.defaultCloseIcon},
     closeConfirm: {type: String, default: ''},
     closeConfirmKey: {type: String, default: '_'},
     showClose: {type: Boolean, default: true},
@@ -87,12 +89,13 @@ const headerButtons = computed(() => {
                             <slot v-bind:name="key"></slot>
                         </div>
                     </template>
-                    <button
-                        class="lkt-modal-button lkt-modal-button-close"
+                    <lkt-button
+                        class="lkt-modal-button"
                         v-on:click.prevent.stop="onClose"
                         v-if="showClose"
                         :disabled="disabledClose"
-                    ></button>
+                        :icon="closeIcon"
+                    />
                 </div>
             </header>
 

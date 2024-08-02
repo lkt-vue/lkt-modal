@@ -22,4 +22,8 @@ export const setCanvas = (component: ValidCanvas): void => {
     Settings.canvas = component;
 };
 
+export const setDefaultModalCloseIcon = (icon: string): void => {
+    Settings.defaultCloseIcon = icon;
+};
+
 export type {ValidModalKey} from "./types/types";

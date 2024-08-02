@@ -15,6 +15,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    closeIcon: {
+        type: StringConstructor;
+        default: () => string;
+    };
     closeConfirm: {
         type: StringConstructor;
         default: string;
@@ -72,6 +76,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    closeIcon: {
+        type: StringConstructor;
+        default: () => string;
+    };
     closeConfirm: {
         type: StringConstructor;
         default: string;
@@ -120,6 +128,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     modalKey: string | number;
     palette: string;
     preTitle: string;
+    closeIcon: string;
     closeConfirm: string;
     closeConfirmKey: string;
     showClose: boolean;
