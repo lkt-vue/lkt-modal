@@ -8,6 +8,7 @@ const props = defineProps({
     palette: {type: String, default: ''},
     size: {type: String, default: ''},
     preTitle: {type: String, default: ''},
+    preTitleIcon: {type: String, default: ''},
     title: {type: String, default: ''},
     closeIcon: {type: String, default: () => Settings.defaultCloseIcon},
     closeConfirm: {type: String, default: ''},
@@ -77,10 +78,11 @@ const headerButtons = computed(() => {
 
             <header class="lkt-modal-header">
                 <div class="lkt-modal-header_title-container">
-                    <div class="lkt-modal-header_pre-title" v-if="slots['pre-title']">
-                        <slot name="pre-title"></slot>
+                    <div class="lkt-modal-header_pre-title" v-if="preTitleIcon || slots['pre-title'] || preTitle">
+                        <i v-if="preTitleIcon" :class="preTitleIcon"/>
+                        <slot name="pre-title" v-if="slots['pre-title']"/>
+                        <div v-else-if="preTitle" v-html="preTitle"></div>
                     </div>
-                    <div class="lkt-modal-header_pre-title" v-else-if="preTitle" v-html="preTitle"></div>
                     <div class="lkt-modal-header_title" v-if="title">{{ title }}</div>
                 </div>
                 <div class="lkt-modal-button-tray">
