@@ -3,34 +3,47 @@ import {closeModal} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {openConfirm} from "lkt-modal-confirm";
 import {Settings} from "../settings/Settings";
+import {EmptyModalKey} from "../types/EmptyModalKey";
 
-const props = defineProps({
-    palette: {type: String, default: ''},
-    size: {type: String, default: ''},
-    preTitle: {type: String, default: ''},
-    preTitleIcon: {type: String, default: ''},
-    title: {type: String, default: ''},
-    closeIcon: {type: String, default: () => Settings.defaultCloseIcon},
-    closeConfirm: {type: String, default: ''},
-    closeConfirmKey: {type: String, default: '_'},
-    showClose: {type: Boolean, default: true},
-    disabledClose: {type: Boolean, default: false},
-    disabledVeilClick: {type: Boolean, default: false},
-    hiddenFooter: {type: Boolean, default: false},
-    modalName: {type: String, default: ''},
-    modalKey: {type: [String, Number], default: '_'},
-    zIndex: {type: Number, default: 500},
-    beforeClose: {type: Function, default: undefined}
+const props = withDefaults(defineProps<{
+    size?: string
+    preTitle?: string
+    preTitleIcon?: string
+    title?: string
+    closeIcon?: string
+    closeConfirm?: string
+    closeConfirmKey?: string
+    showClose?: boolean
+    disabledClose?: boolean
+    disabledVeilClick?: boolean
+    hiddenFooter?: boolean
+    modalName?: string
+    modalKey?: string|EmptyModalKey
+    zIndex?: number
+    beforeClose?: Function
+}>(), {
+    size: '',
+    preTitle: '',
+    preTitleIcon: '',
+    title: '',
+    closeIcon: Settings.defaultCloseIcon,
+    closeConfirm: '',
+    closeConfirmKey: '_',
+    showClose: true,
+    disabledClose: false,
+    disabledVeilClick: false,
+    hiddenFooter: false,
+    modalName: '',
+    modalKey: '_',
+    zIndex: 500,
+    beforeClose: undefined
 });
 
 const refreshComputedProperties = ref(0);
 
 const classes = computed(() => {
     let r = ['lkt-modal'];
-
     if (props.size) r.push(`is-${props.size}`);
-    if (props.palette) r.push(`is-${props.palette}`);
-
     return r.join(' ');
 });
 

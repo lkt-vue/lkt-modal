@@ -1,6 +1,6 @@
 {
   "name": "lkt-modal",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "",
   "type": "module",
   "module": "./dist/build.js",
@@ -12,7 +12,7 @@
     "./theme": "./theme/default.css",
     "./theme/default": "./theme/default.css"
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/build.d.ts",
   "files": [
     "dist/*",
     "src/**/*.vue",
