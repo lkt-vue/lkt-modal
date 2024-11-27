@@ -4,6 +4,7 @@ import {computed, ref, useSlots} from 'vue';
 import {openConfirm} from "lkt-modal-confirm";
 import {Settings} from "../settings/Settings";
 import {EmptyModalKey} from "../types/EmptyModalKey";
+import {LktObject} from "lkt-ts-interfaces";
 
 const props = withDefaults(defineProps<{
     size?: string
@@ -21,6 +22,7 @@ const props = withDefaults(defineProps<{
     modalKey?: string|EmptyModalKey
     zIndex?: number
     beforeClose?: Function
+    item?: LktObject
 }>(), {
     size: '',
     preTitle: '',
@@ -36,7 +38,8 @@ const props = withDefaults(defineProps<{
     modalName: '',
     modalKey: '_',
     zIndex: 500,
-    beforeClose: undefined
+    beforeClose: undefined,
+    item: () => ({}),
 });
 
 const refreshComputedProperties = ref(0);
@@ -50,7 +53,11 @@ const classes = computed(() => {
 const onClose = () => {
         const _onClose = async () => {
             if (typeof props.beforeClose === 'function') {
-                await props.beforeClose();
+                await props.beforeClose({
+                    modalName: props.modalName,
+                    modalKey: props.modalKey,
+                    item: props.item,
+                });
             }
             closeModal(props.modalName, props.modalKey)
         };
@@ -85,7 +92,7 @@ const headerButtons = computed(() => {
 </script>
 
 <template>
-    <section v-bind:class="classes" v-bind:style="'z-index: ' + zIndex">
+    <section :class="classes" :style="'z-index: ' + zIndex">
         <div class="lkt-modal-back" v-on:click.prevent.stop="onVeilClick"></div>
         <div class="lkt-modal-inner" ref="inner">
 
@@ -100,8 +107,8 @@ const headerButtons = computed(() => {
                 </div>
                 <div class="lkt-modal-button-tray">
                     <template v-for="(key) in headerButtons">
-                        <div v-bind:class="'lkt-modal-button lkt-modal-'+key">
-                            <slot v-bind:name="key"></slot>
+                        <div :class="'lkt-modal-button lkt-modal-'+key">
+                            <slot :name="key"/>
                         </div>
                     </template>
                     <lkt-button
@@ -115,7 +122,7 @@ const headerButtons = computed(() => {
             </header>
 
             <section class="lkt-modal-content">
-                <slot></slot>
+                <slot/>
             </section>
 
             <footer class="lkt-modal-footer" v-if="!hiddenFooter && (footerButtons.length > 0 || !!slots.footer)">
@@ -125,8 +132,8 @@ const headerButtons = computed(() => {
 
                 <div class="lkt-modal-button-tray" v-if="footerButtons.length > 0">
                     <template v-for="(key) in footerButtons">
-                        <div v-bind:class="'lkt-modal-button lkt-modal-'+key">
-                            <slot v-bind:name="key"></slot>
+                        <div :class="'lkt-modal-button lkt-modal-'+key">
+                            <slot :name="key"/>
                         </div>
                     </template>
                 </div>

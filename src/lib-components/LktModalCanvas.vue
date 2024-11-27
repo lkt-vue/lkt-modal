@@ -50,9 +50,9 @@ defineExpose({
         <component
             v-for="info in components"
             ref="instanceReferences"
-            v-bind:key="info.index"
-            v-bind:is="info.component"
+            :key="info.index"
+            :is="info.component"
             v-bind="info.props"
-        ></component>
+        />
     </section>
 </template>
