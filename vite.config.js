@@ -33,6 +33,7 @@ export default {
         'lkt-button',
         'lkt-loader',
         'lkt-tabs',
+        'lkt-vue-kernel',
       ],
       output: {
         globals: {

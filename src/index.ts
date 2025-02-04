@@ -26,4 +26,4 @@ export const setDefaultModalCloseIcon = (icon: string): void => {
     Settings.defaultCloseIcon = icon;
 };
 
-export type {ValidModalKey} from "./types/types";
+export type {ValidModalKey} from "lkt-vue-kernel";

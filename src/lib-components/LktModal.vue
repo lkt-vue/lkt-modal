@@ -3,27 +3,9 @@ import {closeModal} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {openConfirm} from "lkt-modal-confirm";
 import {Settings} from "../settings/Settings";
-import {EmptyModalKey} from "../types/EmptyModalKey";
-import {LktObject} from "lkt-ts-interfaces";
+import {ModalConfig} from "lkt-vue-kernel";
 
-const props = withDefaults(defineProps<{
-    size?: string
-    preTitle?: string
-    preTitleIcon?: string
-    title?: string
-    closeIcon?: string
-    closeConfirm?: string
-    closeConfirmKey?: string
-    showClose?: boolean
-    disabledClose?: boolean
-    disabledVeilClick?: boolean
-    hiddenFooter?: boolean
-    modalName?: string
-    modalKey?: string|EmptyModalKey
-    zIndex?: number
-    beforeClose?: Function
-    item?: LktObject
-}>(), {
+const props = withDefaults(defineProps<ModalConfig>(), {
     size: '',
     preTitle: '',
     preTitleIcon: '',
@@ -45,7 +27,7 @@ const props = withDefaults(defineProps<{
 const refreshComputedProperties = ref(0);
 
 const classes = computed(() => {
-    let r = ['lkt-modal'];
+    let r = [];
     if (props.size) r.push(`is-${props.size}`);
     return r.join(' ');
 });
@@ -92,7 +74,7 @@ const headerButtons = computed(() => {
 </script>
 
 <template>
-    <section :class="classes" :style="'z-index: ' + zIndex">
+    <section class="lkt-modal" :class="classes" :style="'z-index: ' + zIndex">
         <div class="lkt-modal-back" v-on:click.prevent.stop="onVeilClick"></div>
         <div class="lkt-modal-inner" ref="inner">
 
@@ -127,7 +109,7 @@ const headerButtons = computed(() => {
 
             <footer class="lkt-modal-footer" v-if="!hiddenFooter && (footerButtons.length > 0 || !!slots.footer)">
                 <div v-if="!!slots.footer" class="lkt-modal-footer_main">
-                    <slot name="footer"></slot>
+                    <slot name="footer"/>
                 </div>
 
                 <div class="lkt-modal-button-tray" v-if="footerButtons.length > 0">

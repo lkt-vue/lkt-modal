@@ -1,8 +1,8 @@
-import {LktObject} from 'lkt-ts-interfaces';
+import {LktObject} from 'lkt-vue-kernel';
 import {Component, nextTick} from 'vue';
 
 import {Settings} from '../settings/Settings';
-import {ValidModalKey} from '../types/types';
+import {ValidModalKey} from 'lkt-vue-kernel';
 
 export const openModal = (
     alias: string,

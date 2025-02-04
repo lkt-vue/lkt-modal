@@ -1,12 +1,12 @@
-declare function ae(t: any, e: any): void;
-declare function H(t: any, e?: string): void;
+declare function ae(n: any, e: any): void;
+declare function H(n: any, e?: string): void;
 declare namespace de {
-    function install(t: any): void;
+    function install(n: any): void;
 }
-declare function le(t: any, e: string | undefined, n: any, r?: {}): void;
-declare function ne(t: any, e?: string, n?: {}): void;
-declare function re(t: any, e?: string, n?: {}): void;
-declare function se(t: any, e?: string, n?: {}): void;
-declare function ie(t: any): void;
-declare function ce(t: any): void;
-export { ae as addModal, H as closeModal, de as default, le as execModal, ne as openModal, re as reOpenModal, se as refreshModal, ie as setCanvas, ce as setDefaultModalCloseIcon };
+declare function le(n: any, e: string | undefined, t: any, r?: {}): void;
+declare function te(n: any, e?: string, t?: {}): void;
+declare function re(n: any, e?: string, t?: {}): void;
+declare function se(n: any, e?: string, t?: {}): void;
+declare function ie(n: any): void;
+declare function ce(n: any): void;
+export { ae as addModal, H as closeModal, de as default, le as execModal, te as openModal, re as reOpenModal, se as refreshModal, ie as setCanvas, ce as setDefaultModalCloseIcon };

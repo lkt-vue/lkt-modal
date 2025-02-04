@@ -1,6 +1,6 @@
 {
   "name": "lkt-modal",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "",
   "type": "module",
   "module": "./dist/build.js",
@@ -44,6 +44,7 @@
     "lkt-loader": "^1.0.1",
     "lkt-modal-confirm": "^1.0.0",
     "lkt-ts-interfaces": "^1.0.2",
+    "lkt-vue-kernel": "^1.0.2",
     "vue": "^3.3.0"
   }
 }

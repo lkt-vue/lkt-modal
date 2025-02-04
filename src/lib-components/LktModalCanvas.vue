@@ -2,8 +2,7 @@
 import {computed, getCurrentInstance, ref} from 'vue';
 import {RenderModalInfo} from '../types/RenderModalInfo';
 import {Settings} from '../settings/Settings';
-import {ValidModalKey} from "../types/types";
-import {LktObject} from "lkt-ts-interfaces";
+import {ValidModalKey, LktObject} from "lkt-vue-kernel";
 
 const refresher = ref(0);
 const instance = getCurrentInstance();

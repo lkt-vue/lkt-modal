@@ -1,14 +1,11 @@
-import {LktObject} from 'lkt-ts-interfaces';
-
 import {getInstanceIndex} from '../functions/config-functions';
-import {RenderModalStack} from '../interfaces/RenderModalStack';
 import {RenderModalInfo} from '../types/RenderModalInfo';
-import {ValidModalKey} from '../types/types';
+import {ValidModalKey, LktObject} from 'lkt-vue-kernel';
 import {ModalConfig} from '../types/ModalConfig';
 
 export class ModalController {
     private config: ModalConfig[] = [];
-    readonly components: RenderModalStack = {};
+    readonly components: LktObject = {};
     private zIndex: number = 500;
 
     setConfig(configStack: ModalConfig[]) {
