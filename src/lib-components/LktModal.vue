@@ -2,27 +2,9 @@
 import {closeModal} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {openConfirm} from "lkt-modal-confirm";
-import {Settings} from "../settings/Settings";
-import {ModalConfig} from "lkt-vue-kernel";
+import {getDefaultValues, Modal, ModalConfig} from "lkt-vue-kernel";
 
-const props = withDefaults(defineProps<ModalConfig>(), {
-    size: '',
-    preTitle: '',
-    preTitleIcon: '',
-    title: '',
-    closeIcon: Settings.defaultCloseIcon,
-    closeConfirm: '',
-    closeConfirmKey: '_',
-    showClose: true,
-    disabledClose: false,
-    disabledVeilClick: false,
-    hiddenFooter: false,
-    modalName: '',
-    modalKey: '_',
-    zIndex: 500,
-    beforeClose: undefined,
-    item: () => ({}),
-});
+const props = withDefaults(defineProps<ModalConfig>(), getDefaultValues(Modal));
 
 const refreshComputedProperties = ref(0);
 

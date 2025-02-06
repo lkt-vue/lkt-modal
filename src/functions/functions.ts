@@ -1,11 +1,11 @@
-import {LktObject} from 'lkt-vue-kernel';
+import {LktObject, ValidModalName} from 'lkt-vue-kernel';
 import {Component, nextTick} from 'vue';
 
 import {Settings} from '../settings/Settings';
 import {ValidModalKey} from 'lkt-vue-kernel';
 
 export const openModal = (
-    alias: string,
+    alias: ValidModalName,
     key: ValidModalKey = '_',
     props: LktObject = {}
 ) => {
@@ -19,7 +19,7 @@ export const openModal = (
 };
 
 export const refreshModal = (
-    alias: string,
+    alias: ValidModalName,
     key: ValidModalKey = '_',
     props: LktObject = {}
 ) => {
@@ -33,7 +33,7 @@ export const refreshModal = (
 };
 
 export const execModal = (
-    alias: string,
+    alias: ValidModalName,
     key: ValidModalKey = '_',
     method: string,
     props: LktObject = {}
@@ -47,7 +47,7 @@ export const execModal = (
     Settings.canvas.refresh();
 };
 
-export const closeModal = (alias: string, key: ValidModalKey = '_') => {
+export const closeModal = (alias: ValidModalName, key: ValidModalKey = '_') => {
     if (!Settings.canvas) {
         console.warn('ModalCanvas not defined');
         return;
@@ -57,13 +57,13 @@ export const closeModal = (alias: string, key: ValidModalKey = '_') => {
     Settings.canvas.refresh();
 };
 
-export const addModal = (alias: string, component: Component) => {
+export const addModal = (alias: ValidModalName, component: Component) => {
     // @ts-ignore
     Settings.controller.addWindow({alias, component});
 };
 
 export const reOpenModal = (
-    alias: string,
+    alias: ValidModalName,
     key: ValidModalKey = '_',
     props: LktObject = {}) => {
     if (!Settings.canvas) {

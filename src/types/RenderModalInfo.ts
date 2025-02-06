@@ -1,11 +1,11 @@
-import {LktObject} from 'lkt-vue-kernel';
+import {LktObject, ValidModalKey, ValidModalName} from 'lkt-vue-kernel';
 import {VueElement} from 'vue';
 
 export type RenderModalInfo = {
     component: VueElement|string;
-    alias: string;
+    alias: ValidModalName;
     index: string;
-    key: string | number;
+    key: ValidModalKey;
     props: LktObject;
     zIndex: number
 };

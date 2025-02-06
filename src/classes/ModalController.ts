@@ -1,6 +1,6 @@
 import {getInstanceIndex} from '../functions/config-functions';
 import {RenderModalInfo} from '../types/RenderModalInfo';
-import {ValidModalKey, LktObject} from 'lkt-vue-kernel';
+import {ValidModalKey, LktObject, ValidModalName} from 'lkt-vue-kernel';
 import {ModalConfig} from '../types/ModalConfig';
 
 export class ModalController {
@@ -16,12 +16,12 @@ export class ModalController {
         this.config.push(configStack);
     }
 
-    private findConfig(alias: string): ModalConfig|undefined {
+    private findConfig(alias: ValidModalName): ModalConfig|undefined {
         return this.config.find((z:ModalConfig) => z.alias === alias);
     }
 
     private getModalInfo(
-        alias: string,
+        alias: ValidModalName,
         key: ValidModalKey = '_',
         props: LktObject = {}
     ): RenderModalInfo {
@@ -39,7 +39,7 @@ export class ModalController {
         };
     }
 
-    open(alias: string, key: ValidModalKey = '_', props: LktObject = {}) {
+    open(alias: ValidModalName, key: ValidModalKey = '_', props: LktObject = {}) {
         const config = this.findConfig(alias);
         if (config) {
             ++this.zIndex;
@@ -58,7 +58,7 @@ export class ModalController {
         return this.components[info.index];
     }
 
-    close(alias: string, key: ValidModalKey = '_') {
+    close(alias: ValidModalName, key: ValidModalKey = '_') {
         const config = this.findConfig(alias);
         if (config) {
             --this.zIndex;

@@ -1,5 +1,5 @@
-import {ValidModalKey} from "lkt-vue-kernel";
+import {ValidModalKey, ValidModalName} from "lkt-vue-kernel";
 
-export const getInstanceIndex = (name: string, key: ValidModalKey = '_'): string => {
+export const getInstanceIndex = (name: ValidModalName, key: ValidModalKey = '_'): string => {
     return `${name}_${key}`;
 }
