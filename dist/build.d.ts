@@ -1,12 +1,15 @@
-declare function de(n: any, e: any): void;
-declare function U(n: any, e?: string): void;
-declare namespace ue {
+declare function Me(n: any, o: any): void;
+declare function oe(n: any, o: any): void;
+declare function te(n: any, o?: string): void;
+declare function j(n: any, o?: string): void;
+declare namespace be {
     function install(n: any): void;
 }
-declare function ce(n: any, e: string | undefined, t: any, a?: {}): void;
-declare function ae(n: any, e?: string, t?: {}): void;
-declare function fe(n: any, e?: string, t?: {}): void;
-declare function ie(n: any, e?: string, t?: {}): void;
-declare function me(n: any): void;
-declare function pe(n: any): void;
-export { de as addModal, U as closeModal, ue as default, ce as execModal, ae as openModal, fe as reOpenModal, ie as refreshModal, me as setCanvas, pe as setDefaultModalCloseIcon };
+declare function ye(n: any, o: string | undefined, e: any, s?: {}): void;
+declare function ne(n: any, o?: string, e?: {}): void;
+declare function ee(n: any, o?: string, e?: {}): void;
+declare function ge(n: any, o?: string, e?: {}): void;
+declare function _e(n: any, o?: string, e?: {}): void;
+declare function Be(n: any): void;
+declare function Ie(n: any): void;
+export { Me as addConfirm, oe as addModal, te as closeConfirm, j as closeModal, be as default, ye as execModal, ne as openConfirm, ee as openModal, ge as reOpenModal, _e as refreshModal, Be as setCanvas, Ie as setDefaultModalCloseIcon };

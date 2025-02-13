@@ -79,3 +79,21 @@ export const reOpenModal = (
         Settings.canvas.refresh();
     });
 };
+
+
+export const openConfirm = (alias: ValidModalName, key: ValidModalKey = '_', props: LktObject = {}) => {
+    let name = alias;
+    if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
+    openModal('confirm__'+name, key, props);
+};
+export const closeConfirm = (alias: ValidModalName, key: ValidModalKey = '_') => {
+    let name = alias;
+    if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
+    closeModal('confirm__'+name, key);
+};
+
+export const addConfirm = (alias: ValidModalName, component: Component) => {
+    let name = alias;
+    if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
+    addModal('confirm__'+name, component);
+};

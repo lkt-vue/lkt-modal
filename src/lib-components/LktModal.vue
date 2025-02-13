@@ -1,23 +1,25 @@
 <script lang="ts" setup>
-import {closeModal} from '../functions/functions';
+import {closeConfirm, closeModal, openConfirm} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
-import {openConfirm} from "lkt-modal-confirm";
-import {getDefaultValues, Modal, ModalConfig} from "lkt-vue-kernel";
+import {BeforeCloseModalData, getDefaultValues, LktObject, Modal, ModalConfig, ModalType} from "lkt-vue-kernel";
 
+// @ts-ignore
 const props = withDefaults(defineProps<ModalConfig>(), getDefaultValues(Modal));
 
 const refreshComputedProperties = ref(0);
 
 const classes = computed(() => {
-    let r = [];
+    let r:string[] = [];
     if (props.size) r.push(`is-${props.size}`);
     return r.join(' ');
 });
 
+const emit = defineEmits(['confirm']);
+
 const onClose = () => {
         const _onClose = async () => {
             if (typeof props.beforeClose === 'function') {
-                await props.beforeClose({
+                await props.beforeClose(<BeforeCloseModalData>{
                     modalName: props.modalName,
                     modalKey: props.modalKey,
                     item: props.item,
@@ -39,19 +41,75 @@ const onClose = () => {
         onClose();
     };
 
-const slots = useSlots();
+const slots:LktObject = useSlots();
 
 const headerButtons = computed(() => {
         refreshComputedProperties.value;
-        let r = [];
+        let r:string[] = [];
         for (let k in slots) if (k.indexOf('button-') === 0) r.push(k);
         return r;
     }),
     footerButtons = computed(() => {
         refreshComputedProperties.value;
-        let r = [];
+        let r:string[] = [];
         for (let k in slots) if (k.indexOf('footer-button-') === 0) r.push(k);
         return r;
+    }),
+    isConfirm = computed(() => {
+        return props.type === ModalType.Confirm;
+    }),
+    computedCanRenderFooter =  computed(() => {
+        if (props.hiddenFooter) return false;
+
+        return footerButtons.value.length > 0
+            || !!slots.footer
+            || canRenderCancel.value
+            || canRenderConfirm.value;
+    }),
+    canRenderCancel = computed(() => {
+        return isConfirm.value
+            && props.cancelButton
+            && typeof props.cancelButton === 'object'
+            && Object.keys(props.cancelButton).length > 0
+            ;
+    }),
+    canRenderConfirm = computed(() => {
+        return isConfirm.value
+            && props.confirmButton
+            && typeof props.confirmButton === 'object'
+            && Object.keys(props.confirmButton).length > 0
+            ;
+    }),
+    computedCancelButtonData = computed(() => {
+        if (!canRenderCancel.value) return {};
+
+        let onClick = () => {
+            if (typeof props.cancelButton.onClick === 'function') {
+                props.cancelButton.onClick();
+            }
+            closeConfirm(props.modalName, props.modalKey);
+        }
+
+        return {
+            ...props.cancelButton,
+            onClick,
+        }
+    }),
+    computedConfirmButton = computed(() => {
+        if (!canRenderConfirm.value) return {};
+
+        let onClick = () => {
+            if (typeof props.confirmButton.onClick === 'function') {
+                props.confirmButton.onClick();
+            }
+            emit('confirm');
+            onClose();
+        }
+
+        return {
+            ...props.confirmButton,
+            onClick,
+        }
     });
 </script>
 
@@ -89,7 +147,7 @@ const headerButtons = computed(() => {
                 <slot/>
             </section>
 
-            <footer class="lkt-modal-footer" v-if="!hiddenFooter && (footerButtons.length > 0 || !!slots.footer)">
+            <footer class="lkt-modal-footer" v-if="computedCanRenderFooter">
                 <div v-if="!!slots.footer" class="lkt-modal-footer_main">
                     <slot name="footer"/>
                 </div>
@@ -100,6 +158,11 @@ const headerButtons = computed(() => {
                             <slot :name="key"/>
                         </div>
                     </template>
+                </div>
+
+                <div class="lkt-modal-button-tray" v-if="isConfirm">
+                    <lkt-button v-if="canRenderCancel" v-bind="computedCancelButtonData"/>
+                    <lkt-button v-if="canRenderConfirm" v-bind="computedConfirmButton"/>
                 </div>
             </footer>
         </div>
