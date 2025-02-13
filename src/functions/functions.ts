@@ -1,8 +1,7 @@
-import {LktObject, ValidModalName} from 'lkt-vue-kernel';
+import {LktObject, ModalCallbackAction, ModalCallbackConfig, ValidModalKey, ValidModalName} from 'lkt-vue-kernel';
 import {Component, nextTick} from 'vue';
 
 import {Settings} from '../settings/Settings';
-import {ValidModalKey} from 'lkt-vue-kernel';
 
 export const openModal = (
     alias: ValidModalName,
@@ -97,3 +96,28 @@ export const addConfirm = (alias: ValidModalName, component: Component) => {
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
     addModal('confirm__'+name, component);
 };
+
+export const runModalCallback = (cfg: ModalCallbackConfig) => {
+    let modalKey = cfg.modalKey ? cfg.modalKey : '_',
+        args = cfg.args ? cfg.args : {};
+
+    switch (cfg.action) {
+        case ModalCallbackAction.ReOpen:
+            return reOpenModal(cfg.modalName, modalKey, args);
+
+        case ModalCallbackAction.Open:
+            return openModal(cfg.modalName, modalKey, args);
+
+        case ModalCallbackAction.Close:
+            return closeModal(cfg.modalName, modalKey);
+
+        case ModalCallbackAction.Refresh:
+            return refreshModal(cfg.modalName, modalKey, args);
+
+        case ModalCallbackAction.Exec:
+            let method = cfg.method;
+            if (!method) return;
+            return execModal(cfg.modalName, modalKey, method, args);
+
+    }
+}

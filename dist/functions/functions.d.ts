@@ -1,6 +1,5 @@
-import { LktObject, ValidModalName } from 'lkt-vue-kernel';
+import { LktObject, ModalCallbackConfig, ValidModalKey, ValidModalName } from 'lkt-vue-kernel';
 import { Component } from 'vue';
-import { ValidModalKey } from 'lkt-vue-kernel';
 export declare const openModal: (alias: ValidModalName, key?: ValidModalKey, props?: LktObject) => void;
 export declare const refreshModal: (alias: ValidModalName, key?: ValidModalKey, props?: LktObject) => void;
 export declare const execModal: (alias: ValidModalName, key: ValidModalKey | undefined, method: string, props?: LktObject) => void;
@@ -10,3 +9,4 @@ export declare const reOpenModal: (alias: ValidModalName, key?: ValidModalKey, p
 export declare const openConfirm: (alias: ValidModalName, key?: ValidModalKey, props?: LktObject) => void;
 export declare const closeConfirm: (alias: ValidModalName, key?: ValidModalKey) => void;
 export declare const addConfirm: (alias: ValidModalName, component: Component) => void;
+export declare const runModalCallback: (cfg: ModalCallbackConfig) => void;
