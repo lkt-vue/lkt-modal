@@ -42,17 +42,6 @@ defineExpose({
     refreshModal,
     execModal
 });
-
-const onConfirmedModal = (info) => {
-    if (info.props?.confirmButton?.onClick && typeof info.props.confirmButton.onClick === 'function') {
-        info.props.confirmButton.onClick();
-        return;
-    }
-    if (info.props?.onConfirm && typeof info.props.onConfirm === 'function') {
-        info.props.onConfirm();
-        return;
-    }
-}
 </script>
 
 <template>
@@ -63,7 +52,6 @@ const onConfirmedModal = (info) => {
             :key="info.index"
             :is="info.component"
             v-bind="info.props"
-            @confirm="() => onConfirmedModal(info)"
         />
     </section>
 </template>

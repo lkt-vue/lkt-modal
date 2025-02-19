@@ -102,8 +102,12 @@ const headerButtons = computed(() => {
             if (typeof props.confirmButton.onClick === 'function') {
                 props.confirmButton.onClick();
             }
+
+            if (props.confirmButton?.onConfirm && typeof props.confirmButton.onConfirm === 'function') {
+                props.confirmButton.onConfirm();
+            }
             emit('confirm');
-            onClose();
+            closeModal(props.modalName, props.modalKey)
         }
 
         return {
