@@ -29,12 +29,18 @@ export class ModalController {
             config = this.findConfig(alias),
             component = typeof config !== 'undefined' ? config.component : '';
 
+        let modalConfig = {
+            modalName: alias,
+            modalKey: key,
+            zIndex: (() => this.zIndex)(),
+        }
+
         return {
             component,
             alias,
             index,
             key,
-            props: {...props, modalName: alias, modalKey: key, zIndex: (() => this.zIndex)()},
+            props: {...props, ...modalConfig, modalConfig},
             zIndex: this.zIndex,
         };
     }
