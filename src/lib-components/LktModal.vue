@@ -16,7 +16,8 @@ const classes = computed(() => {
 
 const emit = defineEmits(['confirm']);
 
-const onClose = () => {
+const onClose = ($event?: PointerEvent) => {
+        if (!$event) return;
         const _onClose = async () => {
             if (typeof props.beforeClose === 'function') {
                 await props.beforeClose(<BeforeCloseModalData>{
@@ -36,9 +37,9 @@ const onClose = () => {
         _onClose();
 
     },
-    onVeilClick = () => {
+    onVeilClick = ($event?: PointerEvent) => {
         if (props.disabledVeilClick) return;
-        onClose();
+        onClose($event);
     };
 
 const slots:LktObject = useSlots();
@@ -139,7 +140,7 @@ const headerButtons = computed(() => {
                     </template>
                     <lkt-button
                         class="lkt-modal-button"
-                        v-on:click.prevent.stop="onClose"
+                        @click="onClose"
                         v-if="showClose"
                         :disabled="disabledClose"
                         :icon="closeIcon"

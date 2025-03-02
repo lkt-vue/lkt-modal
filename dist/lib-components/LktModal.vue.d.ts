@@ -1,6 +1,6 @@
 import { LktObject, Modal, ModalConfig } from "lkt-vue-kernel";
 declare const classes: import("vue").ComputedRef<string>;
-declare const onClose: () => void, onVeilClick: () => void;
+declare const onClose: ($event?: PointerEvent) => void, onVeilClick: ($event?: PointerEvent) => void;
 declare const slots: LktObject;
 declare const headerButtons: import("vue").ComputedRef<string[]>, footerButtons: import("vue").ComputedRef<string[]>, isConfirm: import("vue").ComputedRef<boolean>, computedCanRenderFooter: import("vue").ComputedRef<boolean>, canRenderCancel: import("vue").ComputedRef<boolean>, canRenderConfirm: import("vue").ComputedRef<boolean>, computedCancelButtonData: import("vue").ComputedRef<{}>, computedConfirmButton: import("vue").ComputedRef<{}>;
 declare const __VLS_ctx: InstanceType<__VLS_PickNotAny<typeof __VLS_self, new () => {}>>;
