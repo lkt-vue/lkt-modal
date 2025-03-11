@@ -4,8 +4,7 @@ export declare class ModalController {
     private config;
     readonly components: LktObject;
     private zIndex;
-    setConfig(configStack: ModalConfig[]): void;
-    addWindow(configStack: ModalConfig): void;
+    addModal(configStack: ModalConfig): void;
     private findConfig;
     private getModalInfo;
     open(alias: ValidModalName, key?: ValidModalKey, props?: LktObject): any;

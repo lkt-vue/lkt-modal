@@ -2,17 +2,14 @@ import {getInstanceIndex} from '../functions/config-functions';
 import {RenderModalInfo} from '../types/RenderModalInfo';
 import {ValidModalKey, LktObject, ValidModalName} from 'lkt-vue-kernel';
 import {ModalConfig} from '../types/ModalConfig';
+import {VueElement} from "vue";
 
 export class ModalController {
     private config: ModalConfig[] = [];
     readonly components: LktObject = {};
     private zIndex: number = 500;
 
-    setConfig(configStack: ModalConfig[]) {
-        this.config = configStack;
-    }
-
-    addWindow(configStack: ModalConfig) {
+    addModal(configStack: ModalConfig) {
         this.config.push(configStack);
     }
 
@@ -23,11 +20,10 @@ export class ModalController {
     private getModalInfo(
         alias: ValidModalName,
         key: ValidModalKey = '_',
-        props: LktObject = {}
+        props: LktObject = {},
+        component: VueElement|string = ''
     ): RenderModalInfo {
-        const index = getInstanceIndex(alias, key),
-            config = this.findConfig(alias),
-            component = typeof config !== 'undefined' ? config.component : '';
+        const index = getInstanceIndex(alias, key);
 
         let modalConfig = {
             modalName: alias,
@@ -46,10 +42,13 @@ export class ModalController {
     }
 
     open(alias: ValidModalName, key: ValidModalKey = '_', props: LktObject = {}) {
+
+        if (props.modalKey) key = props.modalKey;
+
         const config = this.findConfig(alias);
         if (config) {
             ++this.zIndex;
-            const info = this.getModalInfo(alias, key, props);
+            const info = this.getModalInfo(alias, key, props, config.component);
             if (this.components[info.index]) {
                 return this.focus(info);
             }
@@ -68,7 +67,7 @@ export class ModalController {
         const config = this.findConfig(alias);
         if (config) {
             --this.zIndex;
-            const info = this.getModalInfo(alias, key, {});
+            const info = this.getModalInfo(alias, key, {}, config.component);
             delete this.components[info.index];
 
             if (Object.keys(this.components).length === 0) {

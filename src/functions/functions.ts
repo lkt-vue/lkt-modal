@@ -58,7 +58,7 @@ export const closeModal = (alias: ValidModalName, key: ValidModalKey = '_') => {
 
 export const addModal = (alias: ValidModalName, component: Component) => {
     // @ts-ignore
-    Settings.controller.addWindow({alias, component});
+    Settings.controller.addModal({alias, component});
 };
 
 export const reOpenModal = (

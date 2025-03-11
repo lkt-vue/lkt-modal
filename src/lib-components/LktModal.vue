@@ -3,6 +3,10 @@ import {closeConfirm, closeModal, openConfirm} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {BeforeCloseModalData, getDefaultValues, LktObject, Modal, ModalConfig, ModalType} from "lkt-vue-kernel";
 
+// defineOptions({
+//     inheritAttrs: false
+// })
+
 // @ts-ignore
 const props = withDefaults(defineProps<ModalConfig>(), getDefaultValues(Modal));
 
@@ -14,7 +18,9 @@ const classes = computed(() => {
     return r.join(' ');
 });
 
-const emit = defineEmits(['confirm']);
+const emit = defineEmits([
+    'confirm'
+]);
 
 const onClose = ($event?: PointerEvent) => {
         if (!$event) return;
@@ -85,8 +91,8 @@ const headerButtons = computed(() => {
         if (!canRenderCancel.value) return {};
 
         let onClick = () => {
-            if (typeof props.cancelButton.onClick === 'function') {
-                props.cancelButton.onClick();
+            if (typeof props.cancelButton?.events?.click === 'function') {
+                props.cancelButton.events.click();
             }
             closeConfirm(props.modalName, props.modalKey);
         }
@@ -100,8 +106,8 @@ const headerButtons = computed(() => {
         if (!canRenderConfirm.value) return {};
 
         let onClick = () => {
-            if (typeof props.confirmButton.onClick === 'function') {
-                props.confirmButton.onClick();
+            if (typeof props.confirmButton?.events?.click === 'function') {
+                props.confirmButton.events.click();
             }
 
             // if (props.confirmButton?.onConfirm && typeof props.confirmButton.onConfirm === 'function') {
@@ -120,7 +126,7 @@ const headerButtons = computed(() => {
 
 <template>
     <section class="lkt-modal" :class="classes" :style="'z-index: ' + zIndex">
-        <div class="lkt-modal-back" v-on:click.prevent.stop="onVeilClick"></div>
+        <div class="lkt-modal-back" v-on:click.prevent.stop="onVeilClick"/>
         <div class="lkt-modal-inner" ref="inner">
 
             <header class="lkt-modal-header">
