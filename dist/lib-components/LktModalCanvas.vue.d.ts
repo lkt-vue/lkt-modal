@@ -1,4 +1,4 @@
-import { ValidModalKey, LktObject } from "lkt-vue-kernel";
+import { LktObject, ValidModalKey } from "lkt-vue-kernel";
 declare const _default: import("vue").DefineComponent<{}, {
     refresh: () => void;
     refreshModal: (alias: string, key?: ValidModalKey, props?: LktObject) => void;

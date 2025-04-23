@@ -19,22 +19,19 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--lkt-modal-back-background);
+    background-color: var(--lkt-modal--back--background);
     transition: all 0.2s linear;
 }
 
 .lkt-modal .lkt-modal-inner {
-    max-width: 50%;
-    /*max-height: calc(100% - 60px);*/
-    background: var(--lkt-modal-background);
+    background: var(--lkt-modal--background);
     z-index: 1;
-    /*overflow-y: hidden;*/
     border-radius: 4.5px;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, .07);
     transition: opacity 0.2s linear 0s, visibility 0s linear 0s;
     margin: 30px auto 0;
-    max-width: var(--lkt-modal-max-width-default);
-    width: var(--lkt-modal-width-default);
+    max-width: var(--lkt-modal--inner--max-width, 50%);
+    width: var(--lkt-modal--inner--width);
 }
 
 .lkt-modal.is-md > .lkt-modal-inner {
@@ -53,10 +50,8 @@
 }
 
 .lkt-modal-content {
-    padding: var(--lkt-modal-content-padding);
+    padding: var(--lkt-modal--content--padding);
     height: 100%;
-    /*overflow-y: auto;*/
-    /*max-height: 100%;*/
     display: block;
     width: 100%;
     border-left: 1px solid #dee2e6;
@@ -75,7 +70,7 @@
     z-index: 10;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    height: var(--lkt-modal-header-height);
+    height: var(--lkt-modal--header--height);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -104,22 +99,22 @@
 }
 
 .lkt-modal-header_title {
-    padding: var(--lkt-modal-title-padding);
-    font-size: var(--lkt-modal-title-font-size);
+    padding: var(--lkt-modal--title--padding);
+    font-size: var(--lkt-modal--title--font-size);
     grid-area: title;
 }
 
 .lkt-modal-header_pre-title {
-    padding: var(--lkt-modal-pre-title-padding);
-    font-size: var(--lkt-modal-pre-title-font-size);
-    font-weight: var(--lkt-modal-pre-title-font-weight);
-    background: var(--lkt-modal-pre-title-background);
-    color: var(--lkt-modal-pre-title-color);
+    padding: var(--lkt-modal--pre-title--padding);
+    font-size: var(--lkt-modal--pre-title--font-size);
+    font-weight: var(--lkt-modal--pre-title--font-weight);
+    background: var(--lkt-modal--pre-title--background);
+    color: var(--lkt-modal--pre-title--color);
     grid-area: pre;
 }
 
 .lkt-modal-header_pre-title + .lkt-modal-header_title {
-    font-size: var(--lkt-modal-title-font-size-after-pre-title);
+    font-size: var(--lkt-modal--title--after-pre-title--font-size);
 }
 
 .lkt-modal footer .footer_footer {

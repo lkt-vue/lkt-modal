@@ -1,12 +1,10 @@
 <script lang="ts" setup>
 import {computed, getCurrentInstance, ref} from 'vue';
-import {RenderModalInfo} from '../types/RenderModalInfo';
-import {Settings} from '../settings/Settings';
-import {ValidModalKey, LktObject} from "lkt-vue-kernel";
+import {LktObject, ModalController, ModalRegisterType, RenderModalConfig, ValidModalKey} from "lkt-vue-kernel";
 
-const refresher = ref(0);
-const instance = getCurrentInstance();
-const instanceReferences = ref([]);
+const refresher = ref(0),
+    instance = getCurrentInstance(),
+    instanceReferences = ref([]);
 
 const refresh = () => {
     refresher.value = refresher.value + 1;
@@ -15,10 +13,10 @@ const refresh = () => {
     }, 1);
 };
 
-const components = computed((): RenderModalInfo[] => {
+const components = computed((): RenderModalConfig[] => {
     refresher.value;
     // @ts-ignore
-    return Object.values(Settings.controller.components);
+    return Object.values(ModalController.components);
 });
 
 const refreshModal = (
@@ -46,12 +44,42 @@ defineExpose({
 
 <template>
     <section class="lkt-modal-canvas">
-        <component
-            v-for="info in components"
-            ref="instanceReferences"
-            :key="info.index"
-            :is="info.component"
-            v-bind="info.props"
-        />
+        <template
+            v-for="info in components">
+            <template v-if="info.modalRegister.type === ModalRegisterType.Full">
+                <component
+                    ref="instanceReferences"
+                    :key="info.index"
+                    :is="info.modalRegister.component"
+                    v-bind="info.legacyData?.props ?? {}"
+                    :modal-name="info.modalConfig.modalName"
+                    :modal-key="info.modalConfig.modalKey"
+                />
+            </template>
+            <template v-else>
+                <lkt-modal
+                    ref="instanceReferences"
+                    v-bind="info.modalConfig"
+                    :key="info.index"
+                    :title="info.modalConfig.title"
+                >
+                    <component
+                        :is="info.modalRegister.component"
+                        v-bind="info.componentProps"
+                        :modal-name="info.modalConfig.modalName"
+                        :modal-key="info.modalConfig.modalKey"
+
+                        v-model:modalTitle="info.modalConfig.title"
+                        @update:modalTitle="refresh"
+
+                        v-model:modalCloseConfirm="info.modalConfig.closeConfirm"
+                        @update:modalCloseConfirm="refresh"
+
+                        v-model:modalCloseConfirmKey="info.modalConfig.closeConfirmKey"
+                        @update:modalCloseConfirmKey="refresh"
+                    />
+                </lkt-modal>
+            </template>
+        </template>
     </section>
 </template>

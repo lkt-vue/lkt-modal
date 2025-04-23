@@ -125,7 +125,7 @@ const headerButtons = computed(() => {
 </script>
 
 <template>
-    <section class="lkt-modal" :class="classes" :style="'z-index: ' + zIndex">
+    <section class="lkt-modal" :class="classes" :style="'z-index: ' + zIndex" :data-modal="modalName" :data-key="modalKey">
         <div class="lkt-modal-back" v-on:click.prevent.stop="onVeilClick"/>
         <div class="lkt-modal-inner" ref="inner">
 
@@ -145,9 +145,9 @@ const headerButtons = computed(() => {
                         </div>
                     </template>
                     <lkt-button
+                        v-if="showClose"
                         class="lkt-modal-button"
                         @click="onClose"
-                        v-if="showClose"
                         :disabled="disabledClose"
                         :icon="closeIcon"
                     />
