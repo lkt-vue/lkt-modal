@@ -3,7 +3,6 @@ import LktModalCanvas from './lib-components/LktModalCanvas.vue';
 import {default as modal} from './lib-components/LktModal.vue';
 
 import "./../lkt-modal.css";
-import {ValidCanvas} from "./types/ValidCanvas";
 import {setModalCanvas} from "lkt-vue-kernel";
 
 export {addModal, closeModal, openModal, reOpenModal, refreshModal, execModal, updateModalKey, openConfirm, closeConfirm, addConfirm, runModalCallback} from './functions/functions';
@@ -19,7 +18,7 @@ const LktModal: Plugin = {
 export default LktModal;
 
 /** @deprecated */
-export const setCanvas = (component: ValidCanvas): void => {
+export const setCanvas = (component: any): void => {
     //@ts-ignore
     setModalCanvas(component);
 };

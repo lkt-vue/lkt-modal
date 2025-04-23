@@ -1,13 +1,12 @@
 import {
     LktObject,
-    ModalCallbackAction,
     ModalCallbackConfig,
     ModalController,
     ModalRegisterType,
     ValidModalKey,
     ValidModalName
 } from 'lkt-vue-kernel';
-import {Component, nextTick, VueElement} from 'vue';
+import {Component, VueElement} from 'vue';
 
 export const addModal = (alias: ValidModalName, component: Component|VueElement|string) => {
     ModalController.addModal({
@@ -31,7 +30,6 @@ export const openModal = (
         modalName: alias,
         modalKey: key,
     }, props, true);
-    // ModalController.canvas?.refresh();
 };
 
 export const refreshModal = (
@@ -67,7 +65,6 @@ export const closeModal = (alias: ValidModalName, key: ValidModalKey = '_') => {
         modalName: alias,
         modalKey: key,
     });
-    // ModalController.canvas?.refresh();
 };
 
 export const reOpenModal = (
@@ -92,20 +89,17 @@ export const openConfirm = (alias: ValidModalName, key: ValidModalKey = '_', pro
     let name = alias;
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
     openModal('confirm__'+name, key, props);
-    // openModal(alias, key, props);
 };
 export const closeConfirm = (alias: ValidModalName, key: ValidModalKey = '_') => {
     let name = alias;
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
     closeModal('confirm__'+name, key);
-    // closeModal(alias, key);
 };
 
 export const addConfirm = (alias: ValidModalName, component: Component) => {
     let name = alias;
     if (typeof name === 'string' && name.indexOf('confirm__') === 0) name = name.substring(9);
     addModal('confirm__'+name, component);
-    // closeModal(alias, component);
 };
 
 export const runModalCallback = (cfg: ModalCallbackConfig) => {

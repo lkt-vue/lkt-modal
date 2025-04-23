@@ -3,10 +3,6 @@ import {closeConfirm, closeModal, openConfirm} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {BeforeCloseModalData, getDefaultValues, LktObject, Modal, ModalConfig, ModalType} from "lkt-vue-kernel";
 
-// defineOptions({
-//     inheritAttrs: false
-// })
-
 // @ts-ignore
 const props = withDefaults(defineProps<ModalConfig>(), getDefaultValues(Modal));
 
