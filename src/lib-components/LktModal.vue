@@ -1,7 +1,15 @@
 <script lang="ts" setup>
 import {closeConfirm, closeModal, openConfirm} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
-import {BeforeCloseModalData, getDefaultValues, LktObject, Modal, ModalConfig, ModalType} from "lkt-vue-kernel";
+import {
+    BeforeCloseModalData,
+    ButtonConfig, ButtonType,
+    getDefaultValues,
+    LktObject,
+    Modal,
+    ModalConfig,
+    ModalType
+} from "lkt-vue-kernel";
 
 // @ts-ignore
 const props = withDefaults(defineProps<ModalConfig>(), getDefaultValues(Modal));
@@ -126,6 +134,20 @@ const headerButtons = computed(() => {
         <div class="lkt-modal-inner" ref="inner">
 
             <header class="lkt-modal-header">
+
+                <div v-if="slots['header-actions']" class="lkt-modal-header-actions">
+                    <lkt-button
+                        v-bind="<ButtonConfig>{
+                            icon: 'lkt-icn-cog',
+                            type: ButtonType.Tooltip,
+                        }"
+                    >
+                        <template #tooltip="{doClose}">
+                            <slot name="header-actions"/>
+                        </template>
+                    </lkt-button>
+                </div>
+
                 <div class="lkt-modal-header_title-container">
                     <div class="lkt-modal-header_pre-title" v-if="preTitleIcon || slots['pre-title'] || preTitle">
                         <i v-if="preTitleIcon" :class="preTitleIcon"/>
