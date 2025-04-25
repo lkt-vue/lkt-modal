@@ -138,6 +138,7 @@ const headerButtons = computed(() => {
                 <div v-if="slots['header-actions']" class="lkt-modal-header-actions">
                     <lkt-button
                         v-bind="<ButtonConfig>{
+                            ...headerActionsButton,
                             icon: 'lkt-icn-cog',
                             type: ButtonType.Tooltip,
                         }"
