@@ -1,9 +1,9 @@
-import { defineComponent as U, ref as $, getCurrentInstance as E, computed as f, resolveComponent as V, createElementBlock as r, openBlock as a, Fragment as F, renderList as z, createBlock as K, unref as B, resolveDynamicComponent as w, mergeProps as N, withCtx as j, mergeDefaults as A, useSlots as H, normalizeStyle as q, normalizeClass as R, createElementVNode as b, withModifiers as G, createCommentVNode as i, createVNode as J, normalizeProps as O, guardReactiveProps as Q, renderSlot as M, toDisplayString as W } from "vue";
+import { defineComponent as U, ref as $, getCurrentInstance as E, computed as f, resolveComponent as V, createElementBlock as r, openBlock as a, Fragment as F, renderList as z, createBlock as K, unref as M, resolveDynamicComponent as w, mergeProps as N, withCtx as j, mergeDefaults as A, useSlots as H, normalizeStyle as q, normalizeClass as R, createElementVNode as b, withModifiers as G, createCommentVNode as i, createVNode as J, normalizeProps as O, guardReactiveProps as Q, renderSlot as B, toDisplayString as W } from "vue";
 import { ModalController as m, ModalRegisterType as D, ModalType as X, ButtonType as Y, getDefaultValues as Z, Modal as x, setModalCanvas as ee } from "lkt-vue-kernel";
 const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
   __name: "LktModalCanvas",
   setup(t, { expose: n }) {
-    const e = $(0), d = E(), v = $([]), h = () => {
+    const e = $(0), d = E(), _ = $([]), h = () => {
       e.value = e.value + 1, setTimeout(() => {
         var p;
         (p = d == null ? void 0 : d.proxy) == null || p.$forceUpdate();
@@ -11,26 +11,26 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
     }, T = f(() => (e.value, Object.values(m.components)));
     return n({
       refresh: h,
-      refreshModal: (p, _ = "_", y = {}) => {
-        v.value.forEach((l) => {
-          l.modalName === p && l.modalKey === _ && typeof l.doRefresh == "function" && l.doRefresh(y);
+      refreshModal: (p, v = "_", y = {}) => {
+        _.value.forEach((l) => {
+          l.modalName === p && l.modalKey === v && typeof l.doRefresh == "function" && l.doRefresh(y);
         });
       },
-      execModal: (p, _ = "_", y, l = {}) => {
-        v.value.forEach((c) => {
-          c.modalName === p && c.modalKey === _ && c[y](l);
+      execModal: (p, v = "_", y, l = {}) => {
+        _.value.forEach((c) => {
+          c.modalName === p && c.modalKey === v && c[y](l);
         });
       }
-    }), (p, _) => {
+    }), (p, v) => {
       const y = V("lkt-modal");
       return a(), r("section", oe, [
         (a(!0), r(F, null, z(T.value, (l) => {
           var c;
           return a(), r(F, null, [
-            l.modalRegister.type === B(D).Full ? (a(), K(w(l.modalRegister.component), N({
+            l.modalRegister.type === M(D).Full ? (a(), K(w(l.modalRegister.component), N({
               ref_for: !0,
               ref_key: "instanceReferences",
-              ref: v,
+              ref: _,
               key: l.index
             }, ((c = l.legacyData) == null ? void 0 : c.props) ?? {}, {
               "modal-name": l.modalConfig.modalName,
@@ -39,7 +39,7 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
               key: 1,
               ref_for: !0,
               ref_key: "instanceReferences",
-              ref: v
+              ref: _
             }, l.modalConfig, {
               key: l.index,
               title: l.modalConfig.title
@@ -78,7 +78,7 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
     modalName: t,
     modalKey: n
   }, e, !0);
-}, Be = (t, n = "_", e = {}) => {
+}, Me = (t, n = "_", e = {}) => {
   m.refresh({
     modalName: t,
     modalKey: n
@@ -133,10 +133,10 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
 }, ye = { class: "lkt-modal-button-tray" }, Ce = { class: "lkt-modal-content" }, ke = {
   key: 0,
   class: "lkt-modal-footer"
-}, _e = {
+}, ve = {
   key: 0,
   class: "lkt-modal-footer_main"
-}, ve = {
+}, _e = {
   key: 1,
   class: "lkt-modal-button-tray"
 }, he = {
@@ -170,7 +170,7 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
     "confirm"
   ],
   setup(t, { emit: n }) {
-    const e = t, d = $(0), v = f(() => {
+    const e = t, d = $(0), _ = f(() => {
       let o = [];
       return e.size && o.push(`is-${e.size}`), o.join(" ");
     }), h = n, T = (o) => {
@@ -196,12 +196,12 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
       let o = [];
       for (let s in k) s.indexOf("button-") === 0 && o.push(s);
       return o;
-    }), _ = f(() => {
+    }), v = f(() => {
       d.value;
       let o = [];
       for (let s in k) s.indexOf("footer-button-") === 0 && o.push(s);
       return o;
-    }), y = f(() => e.type === X.Confirm), l = f(() => e.hiddenFooter ? !1 : _.value.length > 0 || !!k.footer || c.value || C.value), c = f(() => y.value && e.cancelButton && typeof e.cancelButton == "object" && Object.keys(e.cancelButton).length > 0), C = f(() => y.value && e.confirmButton && typeof e.confirmButton == "object" && Object.keys(e.confirmButton).length > 0), L = f(() => {
+    }), y = f(() => e.type === X.Confirm), l = f(() => e.hiddenFooter ? !1 : v.value.length > 0 || !!k.footer || c.value || C.value), c = f(() => y.value && e.cancelButton && typeof e.cancelButton == "object" && Object.keys(e.cancelButton).length > 0), C = f(() => y.value && e.confirmButton && typeof e.confirmButton == "object" && Object.keys(e.confirmButton).length > 0), L = f(() => {
       if (!c.value) return {};
       let o = () => {
         var s, u;
@@ -209,23 +209,29 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
       };
       return {
         ...e.cancelButton,
-        onClick: o
+        events: {
+          ...e.cancelButton.events,
+          click: o
+        }
       };
     }), P = f(() => {
       if (!C.value) return {};
       let o = () => {
         var s, u;
-        typeof ((u = (s = e.confirmButton) == null ? void 0 : s.events) == null ? void 0 : u.click) == "function" && e.confirmButton.events.click(), h("confirm"), I(e.modalName, e.modalKey);
+        typeof ((u = (s = e.confirmButton) == null ? void 0 : s.events) == null ? void 0 : u.click) == "function" && e.confirmButton.events.click({}), h("confirm"), I(e.modalName, e.modalKey);
       };
       return {
         ...e.confirmButton,
-        onClick: o
+        events: {
+          ...e.confirmButton.events,
+          click: o
+        }
       };
     });
     return (o, s) => {
       const u = V("lkt-button");
       return a(), r("section", {
-        class: R(["lkt-modal", v.value]),
+        class: R(["lkt-modal", _.value]),
         style: q("z-index: " + o.zIndex),
         "data-modal": o.modalName,
         "data-key": o.modalKey
@@ -236,25 +242,25 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
         }),
         b("div", de, [
           b("header", ie, [
-            B(k)["header-actions"] ? (a(), r("div", me, [
+            M(k)["header-actions"] ? (a(), r("div", me, [
               J(u, O(Q({
                 ...o.headerActionsButton,
                 icon: "lkt-icn-cog",
-                type: B(Y).Tooltip
+                type: M(Y).Tooltip
               })), {
                 tooltip: j(({ doClose: g }) => [
-                  M(o.$slots, "header-actions")
+                  B(o.$slots, "header-actions")
                 ]),
                 _: 3
               }, 16)
             ])) : i("", !0),
             b("div", ce, [
-              o.preTitleIcon || B(k)["pre-title"] || o.preTitle ? (a(), r("div", ue, [
+              o.preTitleIcon || M(k)["pre-title"] || o.preTitle ? (a(), r("div", ue, [
                 o.preTitleIcon ? (a(), r("i", {
                   key: 0,
                   class: R(o.preTitleIcon)
                 }, null, 2)) : i("", !0),
-                B(k)["pre-title"] ? M(o.$slots, "pre-title", { key: 1 }) : o.preTitle ? (a(), r("div", {
+                M(k)["pre-title"] ? B(o.$slots, "pre-title", { key: 1 }) : o.preTitle ? (a(), r("div", {
                   key: 2,
                   innerHTML: o.preTitle
                 }, null, 8, fe)) : i("", !0)
@@ -265,7 +271,7 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
               (a(!0), r(F, null, z(p.value, (g) => (a(), r("div", {
                 class: R("lkt-modal-button lkt-modal-" + g)
               }, [
-                M(o.$slots, g)
+                B(o.$slots, g)
               ], 2))), 256)),
               o.showClose ? (a(), K(u, {
                 key: 0,
@@ -277,17 +283,17 @@ const oe = { class: "lkt-modal-canvas" }, te = /* @__PURE__ */ U({
             ])
           ]),
           b("section", Ce, [
-            M(o.$slots, "default")
+            B(o.$slots, "default")
           ]),
           l.value ? (a(), r("footer", ke, [
-            B(k).footer ? (a(), r("div", _e, [
-              M(o.$slots, "footer")
+            M(k).footer ? (a(), r("div", ve, [
+              B(o.$slots, "footer")
             ])) : i("", !0),
-            _.value.length > 0 ? (a(), r("div", ve, [
-              (a(!0), r(F, null, z(_.value, (g) => (a(), r("div", {
+            v.value.length > 0 ? (a(), r("div", _e, [
+              (a(!0), r(F, null, z(v.value, (g) => (a(), r("div", {
                 class: R("lkt-modal-button lkt-modal-" + g)
               }, [
-                M(o.$slots, g)
+                B(o.$slots, g)
               ], 2))), 256))
             ])) : i("", !0),
             y.value ? (a(), r("div", he, [
@@ -316,7 +322,7 @@ export {
   ae as openConfirm,
   ne as openModal,
   Ne as reOpenModal,
-  Be as refreshModal,
+  Me as refreshModal,
   Fe as runModalCallback,
   $e as setCanvas,
   Te as updateModalKey

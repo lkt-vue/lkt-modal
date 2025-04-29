@@ -3,7 +3,8 @@ import {closeConfirm, closeModal, openConfirm} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {
     BeforeCloseModalData,
-    ButtonConfig, ButtonType,
+    ButtonConfig,
+    ButtonType,
     getDefaultValues,
     LktObject,
     Modal,
@@ -103,7 +104,10 @@ const headerButtons = computed(() => {
 
         return {
             ...props.cancelButton,
-            onClick,
+            events: {
+                ...props.cancelButton.events,
+                click: onClick,
+            },
         }
     }),
     computedConfirmButton = computed(() => {
@@ -111,19 +115,18 @@ const headerButtons = computed(() => {
 
         let onClick = () => {
             if (typeof props.confirmButton?.events?.click === 'function') {
-                props.confirmButton.events.click();
+                props.confirmButton.events.click({});
             }
-
-            // if (props.confirmButton?.onConfirm && typeof props.confirmButton.onConfirm === 'function') {
-            //     props.confirmButton.onConfirm();
-            // }
             emit('confirm');
             closeModal(props.modalName, props.modalKey)
         }
 
         return {
             ...props.confirmButton,
-            onClick,
+            events: {
+                ...props.confirmButton.events,
+                click: onClick,
+            },
         }
     });
 </script>
