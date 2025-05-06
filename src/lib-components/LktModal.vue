@@ -55,6 +55,20 @@ const onClose = ($event?: PointerEvent) => {
 
 const slots:LktObject = useSlots();
 
+const doConfirm = () => {
+    if (typeof props.confirmButton?.events?.click === 'function') {
+        props.confirmButton.events.click({});
+    }
+    emit('confirm');
+    closeModal(props.modalName, props.modalKey)
+}
+const doCancel = () => {
+    if (typeof props.cancelButton?.events?.click === 'function') {
+        props.cancelButton.events.click({});
+    }
+    closeConfirm(props.modalName, props.modalKey);
+}
+
 const headerButtons = computed(() => {
         refreshComputedProperties.value;
         let r:string[] = [];
@@ -95,37 +109,22 @@ const headerButtons = computed(() => {
     computedCancelButtonData = computed(() => {
         if (!canRenderCancel.value) return {};
 
-        let onClick = () => {
-            if (typeof props.cancelButton?.events?.click === 'function') {
-                props.cancelButton.events.click();
-            }
-            closeConfirm(props.modalName, props.modalKey);
-        }
-
         return {
             ...props.cancelButton,
             events: {
                 ...props.cancelButton.events,
-                click: onClick,
+                click: doCancel,
             },
         }
     }),
     computedConfirmButton = computed(() => {
         if (!canRenderConfirm.value) return {};
 
-        let onClick = () => {
-            if (typeof props.confirmButton?.events?.click === 'function') {
-                props.confirmButton.events.click({});
-            }
-            emit('confirm');
-            closeModal(props.modalName, props.modalKey)
-        }
-
         return {
             ...props.confirmButton,
             events: {
                 ...props.confirmButton.events,
-                click: onClick,
+                click: doConfirm,
             },
         }
     });
@@ -177,7 +176,10 @@ const headerButtons = computed(() => {
             </header>
 
             <section class="lkt-modal-content">
-                <slot/>
+                <slot
+                    :do-confirm="doConfirm"
+                    :do-cancel="doCancel"
+                />
             </section>
 
             <footer class="lkt-modal-footer" v-if="computedCanRenderFooter">

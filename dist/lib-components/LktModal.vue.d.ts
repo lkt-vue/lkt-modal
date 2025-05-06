@@ -1,5 +1,8 @@
 import { Modal, ModalConfig } from "lkt-vue-kernel";
-declare var __VLS_5: {}, __VLS_7: {}, __VLS_10: string, __VLS_11: {}, __VLS_21: {}, __VLS_23: {}, __VLS_26: string, __VLS_27: {};
+declare var __VLS_5: {}, __VLS_7: {}, __VLS_10: string, __VLS_11: {}, __VLS_21: {
+    doConfirm: () => void;
+    doCancel: () => void;
+}, __VLS_23: {}, __VLS_26: string, __VLS_27: {};
 type __VLS_Slots = {} & {
     [K in NonNullable<typeof __VLS_10>]?: (props: typeof __VLS_11) => any;
 } & {
