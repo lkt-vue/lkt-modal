@@ -1,16 +1,16 @@
-declare function Oe(t: any, n: any): void;
-declare function ae(t: any, n: any): void;
-declare function de(t: any, n?: string): void;
-declare function w(t: any, n?: string): void;
-declare namespace ze {
+declare function ze(t: any, a: any): void;
+declare function me(t: any, a: any): void;
+declare function we(t: any, a?: string): void;
+declare function w(t: any, a?: string): void;
+declare namespace je {
     function install(t: any): void;
 }
-declare function Te(t: any, n: string | undefined, e: any, d?: {}): void;
-declare function se(t: any, n?: string, e?: {}): void;
-declare function re(t: any, n?: string, e?: {}): void;
-declare function Re(t: any, n?: string, e?: {}): void;
-declare function Ne(t: any, n?: string, e?: {}): void;
-declare function $e(t: any): void;
-declare function Ie(t: any): void;
-declare function Fe(t: any, n: any, e: any): void;
-export { Oe as addConfirm, ae as addModal, de as closeConfirm, w as closeModal, ze as default, Te as execModal, se as openConfirm, re as openModal, Re as reOpenModal, Ne as refreshModal, $e as runModalCallback, Ie as setCanvas, Fe as updateModalKey };
+declare function $e(t: any, a: string | undefined, e: any, d?: {}): void;
+declare function fe(t: any, a?: string, e?: {}): void;
+declare function ue(t: any, a?: string, e?: {}): void;
+declare function Fe(t: any, a?: string, e?: {}): void;
+declare function Ae(t: any, a?: string, e?: {}): void;
+declare function Ee(t: any): void;
+declare function Ue(t: any): void;
+declare function Oe(t: any, a: any, e: any): void;
+export { ze as addConfirm, me as addModal, we as closeConfirm, w as closeModal, je as default, $e as execModal, fe as openConfirm, ue as openModal, Fe as reOpenModal, Ae as refreshModal, Ee as runModalCallback, Ue as setCanvas, Oe as updateModalKey };

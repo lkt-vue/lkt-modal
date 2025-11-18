@@ -1,15 +1,18 @@
 <script lang="ts" setup>
-import {closeConfirm, closeModal, openConfirm} from '../functions/functions';
+import {closeModal, openConfirm} from '../functions/functions';
 import {computed, ref, useSlots} from 'vue';
 import {
     BeforeCloseModalData,
     ButtonConfig,
     ButtonType,
     getDefaultValues,
+    HeaderConfig,
+    IconConfig,
     LktObject,
     Modal,
     ModalConfig,
-    ModalType
+    ModalType,
+    PolymorphicElementConfig
 } from "lkt-vue-kernel";
 
 // @ts-ignore
@@ -18,7 +21,7 @@ const props = withDefaults(defineProps<ModalConfig>(), getDefaultValues(Modal));
 const refreshComputedProperties = ref(0);
 
 const classes = computed(() => {
-    let r:string[] = [];
+    let r: string[] = [];
     if (props.size) r.push(`is-${props.size}`);
     return r.join(' ');
 });
@@ -53,7 +56,7 @@ const onClose = ($event?: PointerEvent) => {
         onClose($event);
     };
 
-const slots:LktObject = useSlots();
+const slots: LktObject = useSlots();
 
 const doConfirm = () => {
     if (typeof props.confirmButton?.events?.click === 'function') {
@@ -66,25 +69,25 @@ const doCancel = () => {
     if (typeof props.cancelButton?.events?.click === 'function') {
         props.cancelButton.events.click({});
     }
-    closeConfirm(props.modalName, props.modalKey);
+    closeModal(props.modalName, props.modalKey);
 }
 
 const headerButtons = computed(() => {
         refreshComputedProperties.value;
-        let r:string[] = [];
+        let r: string[] = [];
         for (let k in slots) if (k.indexOf('button-') === 0) r.push(k);
         return r;
     }),
     footerButtons = computed(() => {
         refreshComputedProperties.value;
-        let r:string[] = [];
+        let r: string[] = [];
         for (let k in slots) if (k.indexOf('footer-button-') === 0) r.push(k);
         return r;
     }),
     isConfirm = computed(() => {
         return props.type === ModalType.Confirm;
     }),
-    computedCanRenderFooter =  computed(() => {
+    computedCanRenderFooter = computed(() => {
         if (props.hiddenFooter) return false;
 
         return footerButtons.value.length > 0
@@ -127,15 +130,123 @@ const headerButtons = computed(() => {
                 click: doConfirm,
             },
         }
+    }),
+    computedHeaderConfig = computed(() => {
+
+        const headerClass = props.header.class ? `${props.header.class} lkt-modal-header` : 'lkt-modal-header';
+
+        let r: HeaderConfig = {
+            ...props.header,
+            class: headerClass,
+            text: props.header.text ?? props.title,
+            topStartContent: [
+                ...Array.isArray(props.header.topStartContent) ? props.header.topStartContent : []
+            ],
+            topEndContent: [
+                ...Array.isArray(props.header.topEndContent) ? props.header.topEndContent : []
+            ],
+        };
+
+        // Append header actions
+        if (typeof props.headerActionsButton === 'object') {
+            r.topStartContent?.push({
+                tag: 'div',
+                class: 'lkt-modal-header_title-container',
+                content: [
+                    {
+                        tag: 'lkt-icon',
+                        props: <IconConfig>{
+                            icon: props.preTitleIcon,
+                            class: 'lkt-modal-header_title-container',
+                            text: props.preTitle
+                        }
+                    }
+                ],
+            })
+        }
+
+        // Append pre title
+        if ((props.preTitle && props.preTitle !== '') || (props.preTitleIcon && props.preTitleIcon !== '')) {
+            r.topStartContent?.push({
+                tag: 'div',
+                class: 'lkt-modal-header_title-container',
+                content: [
+                    {
+                        tag: 'lkt-icon',
+                        props: <IconConfig>{
+                            icon: props.preTitleIcon,
+                            class: 'lkt-modal-header_pre-title',
+                            text: props.preTitle
+                        }
+                    }
+                ],
+            })
+        }
+
+        // Append
+        if ((Array.isArray(props.headerButtons) && props.headerButtons.length > 0) || props.showClose) {
+            r.topEndContent?.push({
+                tag: 'div',
+                class: 'lkt-modal-button-tray',
+                content:
+                    [
+                        ...Array.isArray(props.headerButtons) ? props.headerButtons?.map((btn, key) => {
+                            return <PolymorphicElementConfig>{
+                                tag: 'lkt-button',
+                                class: 'lkt-modal-button',
+                                props: btn,
+                            }
+                        }) : [],
+
+                        ...props.showClose ? [
+                            <PolymorphicElementConfig>{
+                                tag: 'lkt-button',
+                                class: 'lkt-modal-button',
+                                props: <ButtonConfig>{
+                                    disabled: props.disabledClose,
+                                    icon: props.closeIcon,
+                                    events: {
+                                        click: onClose
+                                    }
+                                },
+                            }
+                        ] : []
+                    ]
+            })
+        }
+
+        return r;
     });
 </script>
 
 <template>
-    <section class="lkt-modal" :class="classes" :style="'z-index: ' + zIndex" :data-modal="modalName" :data-key="modalKey">
+    <section class="lkt-modal" :class="classes" :style="'z-index: ' + zIndex" :data-modal="modalName"
+             :data-key="modalKey">
         <div class="lkt-modal-back" v-on:click.prevent.stop="onVeilClick"/>
         <div class="lkt-modal-inner" ref="inner">
 
-            <header class="lkt-modal-header">
+            <lkt-header
+                v-if="(computedHeaderConfig.text !== '' || computedHeaderConfig.image?.src || computedHeaderConfig.topStartContent?.length > 0 || computedHeaderConfig.topEndContent?.length > 0)"
+                v-bind="computedHeaderConfig"
+            >
+                <template v-if="slots['header-actions']" #top-start>
+                    <div class="lkt-modal-header-actions">
+                        <lkt-button
+                            v-bind="<ButtonConfig>{
+                            ...headerActionsButton,
+                            icon: 'lkt-icn-cog',
+                            type: ButtonType.Tooltip,
+                        }"
+                        >
+                            <template #tooltip="{doClose}">
+                                <slot name="header-actions"/>
+                            </template>
+                        </lkt-button>
+                    </div>
+                </template>
+            </lkt-header>
+
+            <header v-else class="lkt-modal-header">
 
                 <div v-if="slots['header-actions']" class="lkt-modal-header-actions">
                     <lkt-button
