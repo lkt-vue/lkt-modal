@@ -148,22 +148,22 @@ const headerButtons = computed(() => {
         };
 
         // Append header actions
-        if (typeof props.headerActionsButton === 'object') {
-            r.topStartContent?.push({
-                tag: 'div',
-                class: 'lkt-modal-header_title-container',
-                content: [
-                    {
-                        tag: 'lkt-icon',
-                        props: <IconConfig>{
-                            icon: props.preTitleIcon,
-                            class: 'lkt-modal-header_title-container',
-                            text: props.preTitle
-                        }
-                    }
-                ],
-            })
-        }
+        // if (typeof props.headerActionsButton === 'object' && Object.keys(props.headerActionsButton).length > 0) {
+        //     r.topStartContent?.push({
+        //         tag: 'div',
+        //         class: 'lkt-modal-header-actions',
+        //         content: [
+        //             {
+        //                 tag: 'lkt-icon',
+        //                 props: <ButtonConfig>{
+        //                     ...props.headerActionsButton,
+        //                     icon: 'lkt-icn-cog',
+        //                     type: ButtonType.Tooltip,
+        //                 }
+        //             }
+        //         ],
+        //     })
+        // }
 
         // Append pre title
         if ((props.preTitle && props.preTitle !== '') || (props.preTitleIcon && props.preTitleIcon !== '')) {
