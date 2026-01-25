@@ -133,17 +133,17 @@ const headerButtons = computed(() => {
     }),
     computedHeaderConfig = computed(() => {
 
-        const headerClass = props.header.class ? `${props.header.class} lkt-modal-header` : 'lkt-modal-header';
+        const headerClass = props.header?.class ? `${props.header.class} lkt-modal-header` : 'lkt-modal-header';
 
         let r: HeaderConfig = {
             ...props.header,
             class: headerClass,
-            text: props.header.text ?? props.title,
+            text: props.header?.text ?? props.title,
             topStartContent: [
-                ...Array.isArray(props.header.topStartContent) ? props.header.topStartContent : []
+                ...Array.isArray(props.header?.topStartContent) ? props.header.topStartContent : []
             ],
             topEndContent: [
-                ...Array.isArray(props.header.topEndContent) ? props.header.topEndContent : []
+                ...Array.isArray(props.header?.topEndContent) ? props.header.topEndContent : []
             ],
         };
 
